@@ -3,7 +3,7 @@ package com.example.individual.business.impl;
 import com.example.individual.domain.Playlist;
 import com.example.individual.repository.entity.PlaylistEntity;
 
-final class PlaylistConverter {
+public class PlaylistConverter {
     private PlaylistConverter() {
     }
 
