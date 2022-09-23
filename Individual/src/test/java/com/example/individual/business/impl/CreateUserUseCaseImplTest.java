@@ -3,6 +3,7 @@ package com.example.individual.business.impl;
 import com.example.individual.domain.CreateUserRequest;
 import com.example.individual.domain.CreateUserResponse;
 import com.example.individual.repository.UserRepository;
+import com.example.individual.repository.UserRepositoryImpl;
 import com.example.individual.repository.entity.UserEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,7 +18,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class CreateUserUseCaseImplTest {
     @Mock
-    private UserRepository userRepositoryMock = mock(UserRepository.class);
+    private UserRepository userRepositoryMock = mock(UserRepositoryImpl.class);
 
     @Mock
     private CreateUserRequest request = mock(CreateUserRequest.class);
@@ -46,7 +47,7 @@ class CreateUserUseCaseImplTest {
 
         UserEntity savedUser = userRepositoryMock.save(newUser);
         CreateUserResponse actualResult = CreateUserResponse.builder()
-                .userId(savedUser.getId())
+                .userId(newUser.getId())
                 .build();
 
         CreateUserResponse expectedResult = CreateUserResponse.builder()
