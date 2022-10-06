@@ -1,7 +1,7 @@
 package com.example.individual.business.impl;
 
-import com.example.individual.domain.GetAllPlaylistsRequest;
-import com.example.individual.domain.GetAllPlaylistsResponse;
+import com.example.individual.domain.GetAllPlaylistsByUserIdRequest;
+import com.example.individual.domain.GetAllPlaylistsByUserIdResponse;
 import com.example.individual.repository.PlaylistRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,10 +22,10 @@ class GetAllPlaylistsByUserIdUseCaseImplTest {
 
     @Test
     void getAllPlaylistsByUserId_shouldReturnAllPlaylistsConverted(){
-        GetAllPlaylistsRequest request = new GetAllPlaylistsRequest();
+        GetAllPlaylistsByUserIdRequest request = new GetAllPlaylistsByUserIdRequest();
         request.setUserId(1L);
 
-        GetAllPlaylistsResponse response = getAllPlaylistsUseCase.getPlaylists(request);
+        GetAllPlaylistsByUserIdResponse response = getAllPlaylistsUseCase.getPlaylists(request);
         int actualResult = response.getPlaylists().size();
         int expectedResult = playlistRepositoryMock.findAll().size();
 

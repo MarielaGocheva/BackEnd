@@ -5,12 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class GetAllPlaylistsResponse {
-    private List<Playlist> playlists;
+@AllArgsConstructor
+public class GetAllPlaylistsByUserIdRequest {
+    private long userId;
 }
