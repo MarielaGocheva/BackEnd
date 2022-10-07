@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/playlists")
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin("http://localhost:3000")
 public class PlaylistsController {
     private final GetAllPlaylistsByUserIdUseCase getAllPlaylistsByUserIdUseCase;
 

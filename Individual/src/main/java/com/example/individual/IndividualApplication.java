@@ -13,15 +13,15 @@ public class IndividualApplication {
     public static void main(String[] args) {
         SpringApplication.run(IndividualApplication.class, args);
     }
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/playlists-javaconfig").allowedOrigins("http://localhost:3000");
-            }
-        };
-    }
+//    @Bean
+//    public WebMvcConfigurer corsConfigurer() {
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                registry.addMapping("/playlists-javaconfig").allowedOrigins("http://localhost:3000");
+//            }
+//        };
+//    }
 
 
 }
