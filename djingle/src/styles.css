@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.nav{
+    /*text-align: left;*/
+}
+
+.menu-container{
+    text-decoration: none;
+    color: white;
+    background-color: #141115;
+    width: 15%;
+    align-items: center;
+    padding: 2rem;
+}
+
+.nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+
+
+.nav li.active {
+background-color: #2F2C31;
+
+}
+
+.nav li:hover{
+background-color: aqua;
+}
+
+.nav a {
+    color: inherit;
+    text-decoration: none;
+}
