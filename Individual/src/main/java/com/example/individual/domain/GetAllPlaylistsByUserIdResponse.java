@@ -11,6 +11,6 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetAllPlaylistsResponse {
-    private List<Playlist> playlists;
+public class GetAllPlaylistsByUserIdResponse {
+    List<Playlist> playlists;
 }

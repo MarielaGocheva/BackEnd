@@ -1,8 +1,8 @@
 package com.example.individual.business;
 
-import com.example.individual.domain.GetAllPlaylistsRequest;
-import com.example.individual.domain.GetAllPlaylistsResponse;
+import com.example.individual.domain.GetAllPlaylistsByUserIdRequest;
+import com.example.individual.domain.GetAllPlaylistsByUserIdResponse;
 
 public interface GetAllPlaylistsByUserIdUseCase {
-    GetAllPlaylistsResponse getPlaylists(GetAllPlaylistsRequest request);
+    GetAllPlaylistsByUserIdResponse getPlaylists(GetAllPlaylistsByUserIdRequest request);
 }

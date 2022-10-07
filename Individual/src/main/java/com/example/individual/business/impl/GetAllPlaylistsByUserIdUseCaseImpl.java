@@ -1,8 +1,8 @@
 package com.example.individual.business.impl;
 
 import com.example.individual.business.GetAllPlaylistsByUserIdUseCase;
-import com.example.individual.domain.GetAllPlaylistsRequest;
-import com.example.individual.domain.GetAllPlaylistsResponse;
+import com.example.individual.domain.GetAllPlaylistsByUserIdRequest;
+import com.example.individual.domain.GetAllPlaylistsByUserIdResponse;
 import com.example.individual.domain.Playlist;
 import com.example.individual.repository.PlaylistRepository;
 import com.example.individual.repository.entity.PlaylistEntity;
@@ -17,7 +17,7 @@ public class GetAllPlaylistsByUserIdUseCaseImpl implements GetAllPlaylistsByUser
     private PlaylistRepository playlistRepository;
 
     @Override
-    public GetAllPlaylistsResponse getPlaylists(final GetAllPlaylistsRequest request) {
+    public GetAllPlaylistsByUserIdResponse getPlaylists(final GetAllPlaylistsByUserIdRequest request) {
         List<PlaylistEntity> results;
         if (request.getUserId() >= 1) {
             results = playlistRepository.findAllByUserId(request.getUserId());
@@ -25,7 +25,7 @@ public class GetAllPlaylistsByUserIdUseCaseImpl implements GetAllPlaylistsByUser
             results = null;
         }
 
-        final GetAllPlaylistsResponse response = new GetAllPlaylistsResponse();
+        final GetAllPlaylistsByUserIdResponse response = new GetAllPlaylistsByUserIdResponse();
         List<Playlist> playlists = results
                 .stream()
                 .map(PlaylistConverter::convert)
