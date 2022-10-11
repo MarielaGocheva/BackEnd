@@ -1,23 +1,72 @@
 * {
     box-sizing: border-box;
+    /* text-align: center */
 }
 
 body {
     margin: 0;
+    text-align: center;
 }
 
 .nav{
-    /*text-align: left;*/
+    text-align: center;
 }
 
-.menu-container{
+body {
+    background-image: url("./bg_grad.png");
+    /* justify-content: right;
+    align-items: right;
+    text-align: right; */
+  
+  }
+  
+  .logo{
+    width: 100px;
+    margin-top: 0;
+    margin-left: 10%;
+  }
+  
+  .App-header {
+    display: flex;
+    flex-direction: column;
+    color: white;
+  }
+
+.menu-grid {
+    display: grid;
+grid-template-columns: repeat(6, 1fr);
+grid-template-rows: 1fr;
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+min-height: 100vh;
+    }
+    
+    .menu {
+        grid-area: 1 / 1 / 2 / 2;; 
+         text-decoration: none;
+    color: white;
+    background-color: #141115;
+    width: 100%;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+        }
+    .content { grid-area: 1 / 2 / 2 / 7;
+        background-image: url("./bg_3col.png");
+        /* justify-content: right;
+        align-items: right;
+        text-align: right; */
+    }
+
+
+/* .menu-container{
     text-decoration: none;
     color: white;
     background-color: #141115;
     width: 15%;
     align-items: center;
     padding: 2rem;
-}
+} */
 
 .nav ul {
     padding: 0;
@@ -33,7 +82,7 @@ background-color: #2F2C31;
 }
 
 .nav li:hover{
-background-color: aqua;
+background-color: #534e55;
 }
 
 .nav a {
