@@ -1,19 +1,20 @@
 package com.example.individual.domain;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Playlist {
+public class Song {
     private Long id;
-    private Long userId;
+    private String songUri;
+    private String artist;
     private int duration;
-    private List<Song> songs;
+    private String imageUrl;
+    private Long playlistId;
 }
