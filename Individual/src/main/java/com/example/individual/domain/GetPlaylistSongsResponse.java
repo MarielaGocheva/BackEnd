@@ -9,11 +9,8 @@ import java.util.List;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class Playlist {
-    private Long id;
-    private Long userId;
-    private int duration;
-    private List<Song> songs;
+@NoArgsConstructor
+public class GetPlaylistSongsResponse {
+    List<Song> songs;
 }

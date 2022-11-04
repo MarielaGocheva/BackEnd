@@ -7,19 +7,18 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.List;
 
 @Entity
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PlaylistEntity {
+public class SongEntity {
     @Id
     private Long id;
-    private Long userId;
+    private String songUri;
+    private String artist;
     private int duration;
-    @OneToMany
-    private List<SongEntity> songs;
+    private String imageUrl;
+    private Long playlistId;
 }

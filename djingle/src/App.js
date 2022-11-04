@@ -1,30 +1,38 @@
 import logo from './logoDark.png';
 import girl from './girlCropped.png';
 import record from './record.png';
-import './App.css';
-import NavBar from './NavBar';
+//import './App.css';
+import NavBar from './Components/NavBar';
 import './styles.css';
 import HomePage from './Pages/HomePage';
-import Playlists from './Pages/Playlists';
+import Playlists from './Pages/PlaylistsPage';
 import RegisterPage from './Pages/RegisterPage';
 import {Route, Routes} from "react-router-dom";
 
 export default function App() {
   return (
-    <div className="App">
-      
-      <header className="App-header">
+    <>
+    {/* <header className="App-header">
         <img src={logo} className="logo" alt="logo" />
 
-      </header>
-      <NavBar />
-      <Routes>
+      </header> */}
+    <div className="menu-grid">
+<div className="menu"> 
+<img src={logo} className="logo" alt="logo" />
+
+<NavBar />
+      
+      </div>
+<div className="content"> <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/home' element={<RegisterPage />} />
         <Route path='/playlists' element={<Playlists />} />
-      </Routes>
-      {/* <Component /> */}
-      <body>
+      </Routes></div>
+</div>
+    <div className="App">
+      
+      
+      {/* <body>
         <div className="record-contains">
           <span className="circle">
             <img src={record} className="App-logo" alt='record'/>
@@ -33,8 +41,9 @@ export default function App() {
         
         <img src={girl} className="img-girl" alt="girl"/>
         
-      </body>
+      </body> */}
     </div>
+    </>
   );
 }
 

@@ -5,14 +5,12 @@ stages:
 build:
     stage: build
     script: 
-    - cd Individual
     - ./gradlew build -x test
     - ./gradlew.bat --stop
 
 test: 
     stage: test
     script:
-    - cd Individual
     - ./gradlew test
     - ./gradlew.bat --stop
 
@@ -20,14 +18,16 @@ test:
 sonarqube-check:
   image: gradle:jre11-slim
   variables:
+    SONAR_HOST_URL: "http://localhost:8090/"
     SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
     GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
   cache:
     key: "${CI_JOB_NAME}"
     paths:
       - .sonar/cache
-  script: gradle sonarqube
+  script:   
+     - ./gradlew sonarqube
+     - ./gradlew.bat --stop
   allow_failure: true
-  only:
-      - dev
  
+
