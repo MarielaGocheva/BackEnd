@@ -5,7 +5,7 @@ import record from './record.png';
 import NavBar from './Components/NavBar';
 import './styles.css';
 import HomePage from './Pages/HomePage';
-import Playlists from './Pages/Playlists';
+import Playlists from './Pages/PlaylistsPage';
 import RegisterPage from './Pages/RegisterPage';
 import {Route, Routes} from "react-router-dom";
 

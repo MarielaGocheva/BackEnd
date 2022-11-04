@@ -36,7 +36,7 @@ grid-row-gap: 0px;
     }
     
     .menu {
-        grid-area: 1 / 1 / 2 / 2;; 
+        grid-area: 1 / 1 / 2 / 2;
          
         }
     .content { grid-area: 1 / 2 / 2 / 7; }
@@ -167,5 +167,6 @@ opacity: 70%;
 .song-containers .song-container {
     margin-top: 2vh;
 }
+
 
            

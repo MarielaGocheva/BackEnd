@@ -9,7 +9,9 @@ body {
 }
 
 .nav{
-    text-align: center;
+    text-align: left;
+    font-size: 16pt;
+    margin-top: 6vh;
 }
 
 body {
@@ -21,9 +23,8 @@ body {
   }
   
   .logo{
-    width: 100px;
-    margin-top: 0;
-    margin-left: 10%;
+    width: 140px;
+    margin-top: -4vh;
   }
   
   .App-header {
@@ -75,17 +76,32 @@ min-height: 100vh;
 }
 
 
+.nav li {
+    margin-top: 2.8vh;
+    padding-left: 4vh;
+    padding-top: 00.5vh;
+    padding-bottom: 0.5vh;
+}
+
 
 .nav li.active {
-background-color: #2F2C31;
+background-color: rgb(47, 44, 49, 0.7);
+border-radius: 10px;
 
 }
 
 .nav li:hover{
-background-color: #534e55;
+background-color: rgb(83, 78, 85, 0.5);
+border-radius: 10px;
+cursor: pointer;
 }
 
 .nav a {
     color: inherit;
     text-decoration: none;
+}
+
+.menu-icons {
+    width: 2.2vh;
+    margin-right: 1vh;
 }

@@ -19,6 +19,9 @@ const [posts, setPosts] = useState([]);
 
     return (
       <>
+      {/* <div className="your-playlists">
+        <p>Your playlists IDs are {posts.map(element => ( <span>{element.id}</span>))}</p>
+      </div> */}
         <div className="home">
             <div className="last_grid">
                 <h1>Your last work</h1>
@@ -79,7 +82,7 @@ const [posts, setPosts] = useState([]);
                 <Song />
             </div>
            </div>
-           {posts.map(element => ( <p>{element.id}</p>))}
+           
             </div>
       </>
     );

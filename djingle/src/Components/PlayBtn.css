@@ -11,13 +11,13 @@
 }
 
 .play-btn:hover .triangle {
-    border-color: transparent transparent transparent rgb(60, 57, 63, 0.7);   
+    border-color: transparent transparent transparent rgba(44, 42, 46);   
 }
 
 .triangle {
     border-style: solid;
     border-width: 12px 0 12px 24px;
-    border-color: transparent transparent transparent rgb(60, 57, 63, 0.9);
+    border-color: transparent transparent transparent rgb(40, 42, 46, 0.9);
 }
 
 .inside {
