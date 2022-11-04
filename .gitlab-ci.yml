@@ -26,8 +26,9 @@ sonarqube-check:
     paths:
       - .sonar/cache
   script: 
-      - cd Individual
-      - gradle sonarqube
+     - cd Individual
+     - ./gradlew sonarqube
+     - ./gradlew.bat --stop
   allow_failure: true
   only:
     - dev # or the name of your main branch
