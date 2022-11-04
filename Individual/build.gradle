@@ -2,7 +2,9 @@ plugins {
     id 'org.springframework.boot' version '2.7.3'
     id 'io.spring.dependency-management' version '1.0.13.RELEASE'
     id 'java'
+    id "org.sonarqube" version "3.4.0.2513"
 }
+
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -27,6 +29,13 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "project_S3"
+        property "sonar.qualitygate.wait", true
+    }
 }
 
 tasks.named('test') {
