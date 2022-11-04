@@ -31,7 +31,7 @@ public class PlaylistsController {
         GetAllPlaylistsByUserIdResponse response = getAllPlaylistsByUserIdUseCase.getPlaylists(request);
         return ResponseEntity.ok(response);
     }
-
+    //try
     @GetMapping
     public ResponseEntity<GetAllPlaylistsResponse> getAllPlaylists() {
         GetAllPlaylistsResponse response = getAllPlaylistsUseCase.getPlaylists();
