@@ -5,12 +5,14 @@ stages:
 build:
     stage: build
     script: 
+    - cd Individual
     - ./gradlew build -x test
     - ./gradlew.bat --stop
 
 test: 
     stage: test
     script:
+    - cd Individual
     - ./gradlew test
     - ./gradlew.bat --stop
 
