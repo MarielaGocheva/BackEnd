@@ -21,9 +21,10 @@ public class PlaylistsController {
     private final GetAllPlaylistsUseCase getAllPlaylistsUseCase;
     private final GetPlaylistSongsUseCase getPlaylistSongsUseCase;
     //check
+
     @Autowired
     private final AddSongUseCase addSongUseCase;
-
+    //try
     @GetMapping("/byUser")
     public ResponseEntity<GetAllPlaylistsByUserIdResponse> getAllPlaylistsByUserId(@RequestParam(value = "userId", required = false) long userId) {
         GetAllPlaylistsByUserIdRequest request = GetAllPlaylistsByUserIdRequest.builder().userId(userId).build();
