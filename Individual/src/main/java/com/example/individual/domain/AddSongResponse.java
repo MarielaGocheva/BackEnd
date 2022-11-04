@@ -5,15 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class Playlist {
-    private Long id;
-    private Long userId;
-    private int duration;
-    private List<Song> songs;
+@NoArgsConstructor
+public class AddSongResponse {
+    private Boolean added;
 }

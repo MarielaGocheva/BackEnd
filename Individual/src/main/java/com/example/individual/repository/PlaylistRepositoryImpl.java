@@ -1,6 +1,7 @@
 package com.example.individual.repository;
 
 import com.example.individual.repository.entity.PlaylistEntity;
+import com.example.individual.repository.entity.SongEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -65,4 +66,16 @@ public class PlaylistRepositoryImpl implements PlaylistRepository{
     public List<PlaylistEntity> findAll() {
         return savedPlaylists;
     }
+
+    @Override
+    public List<SongEntity> getSongs(long id)
+    {
+        List<SongEntity> songs = new ArrayList<>();
+        for (PlaylistEntity pl : savedPlaylists){
+            if(pl.getId() == id){
+                songs = pl.getSongs();
+            }
+        }
+        return songs;
+    };
 }
