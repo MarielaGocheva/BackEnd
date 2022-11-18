@@ -1,5 +1,8 @@
-package com.example.individual.repository;
+package com.example.individual.repository.impl;
 
+import com.example.individual.domain.User;
+import com.example.individual.repository.UserRepository;
+import com.example.individual.repository.converter.UserConverter;
 import com.example.individual.repository.entity.UserEntity;
 import org.springframework.stereotype.Repository;
 
@@ -12,24 +15,30 @@ import java.util.Optional;
 public class UserRepositoryImpl implements UserRepository {
     private static long NEXT_ID = 1;
     private final List<UserEntity> savedUsers;
+    private UserConverter userConverter;
 
     public UserRepositoryImpl() {
+
         this.savedUsers = new ArrayList<>();
+        this.userConverter = new UserConverter();
     }
 
 
     @Override
-    public Optional<UserEntity> findById(Long userId) {
-        return this.savedUsers.stream()
-                .filter(userEntity -> userEntity.getId().equals(userId))
-                .findFirst();
+    public User findById(Long userId) {
+        for (UserEntity user : savedUsers){
+            if (user.getId() == userId){
+                return userConverter.ConvertToUser(user);
+            }
+        }
+        return null;
     }
 
     @Override
-    public UserEntity save(UserEntity user) {
+    public User save(User user) {
         user.setId(NEXT_ID);
         NEXT_ID++;
-        this.savedUsers.add(user);
+        this.savedUsers.add(userConverter.ConvertToUserEntity(user));
         return user;
     }
 
@@ -50,8 +59,8 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public List<UserEntity> findAll() {
-        return Collections.unmodifiableList(this.savedUsers);
+    public List<User> findAll() {
+        return Collections.unmodifiableList(savedUsers.stream().map(userEntity -> userConverter.ConvertToUser(userEntity)).toList());
     }
 
 }

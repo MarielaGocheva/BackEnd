@@ -1,5 +1,6 @@
-package com.example.individual.repository;
+package com.example.individual.repository.impl;
 
+import com.example.individual.repository.SongRepository;
 import com.example.individual.repository.entity.SongEntity;
 import org.springframework.stereotype.Repository;
 
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class SongRepositoryImpl implements SongRepository{
+public class SongRepositoryImpl implements SongRepository {
     private static long NEXT_ID = 1;
     private final List<SongEntity> addedSongs;
 
@@ -20,7 +21,6 @@ public class SongRepositoryImpl implements SongRepository{
         try {
             SongEntity added = SongEntity.builder()
                     .songUri(songUri)
-                    .playlistId(playlistId)
                     .build();
             addedSongs.add(added);
             return added;

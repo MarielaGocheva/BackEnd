@@ -14,6 +14,6 @@ import java.util.List;
 public class Playlist {
     private Long id;
     private Long userId;
-    private int duration;
+    private Double duration;
     private List<Song> songs;
 }

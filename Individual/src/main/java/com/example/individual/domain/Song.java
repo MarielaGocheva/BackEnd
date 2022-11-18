@@ -14,7 +14,6 @@ public class Song {
     private Long id;
     private String songUri;
     private String artist;
-    private int duration;
+    private Double duration;
     private String imageUrl;
-    private Long playlistId;
 }

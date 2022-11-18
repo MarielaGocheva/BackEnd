@@ -4,6 +4,7 @@ import com.example.individual.business.GetUsersUseCase;
 import com.example.individual.domain.GetAllUsersRequest;
 import com.example.individual.domain.GetAllUsersResponse;
 import com.example.individual.domain.User;
+import com.example.individual.repository.converter.UserConverter;
 import com.example.individual.repository.UserRepository;
 import com.example.individual.repository.entity.UserEntity;
 import lombok.AllArgsConstructor;
@@ -18,14 +19,10 @@ public class GetUsersUseCaseImpl implements GetUsersUseCase {
 
     @Override
     public GetAllUsersResponse getUsers(final GetAllUsersRequest request) {
-        List<UserEntity> results = userRepository.findAll();
 
         final GetAllUsersResponse response = new GetAllUsersResponse();
-        List<User> users = results
-                .stream()
-                .map(UserConverter::convert)
-                .toList();
-        response.setUsers(users);
+
+        response.setUsers(userRepository.findAll());
 
         return response;
     }

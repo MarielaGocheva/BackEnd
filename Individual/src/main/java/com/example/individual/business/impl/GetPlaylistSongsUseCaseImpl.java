@@ -2,8 +2,8 @@ package com.example.individual.business.impl;
 
 import com.example.individual.business.GetPlaylistSongsUseCase;
 import com.example.individual.domain.*;
+import com.example.individual.repository.converter.SongConverter;
 import com.example.individual.repository.PlaylistRepository;
-import com.example.individual.repository.entity.PlaylistEntity;
 import com.example.individual.repository.entity.SongEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class GetPlaylistSongsUseCaseImpl implements GetPlaylistSongsUseCase {
 
     @Override
     public GetPlaylistSongsResponse getSongs(GetPlaylistSongsRequest request) {
-        List<SongEntity> songs;
+        List<Song> songs;
         if (request.getPlaylistId() >= 1) {
             songs = playlistRepository.getSongs(request.getPlaylistId());
         } else {
@@ -27,7 +27,7 @@ public class GetPlaylistSongsUseCaseImpl implements GetPlaylistSongsUseCase {
         final GetPlaylistSongsResponse response = new GetPlaylistSongsResponse();
         List<Song> plSongs = songs
                 .stream()
-                .map(SongConverter::convert)
+//                .map(SongConverter::convert)
                 .toList();
         response.setSongs(plSongs);
 

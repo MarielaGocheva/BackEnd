@@ -3,24 +3,35 @@ package com.example.individual.repository.entity;
 import lombok.*;
 import org.springframework.context.annotation.Bean;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-//@Table(name = "country")
+@Table(name = "user")
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserEntity {
     @Id
-    //@Generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "fName")
     private String fName;
+
+    @Column(name = "lName")
     private String lName;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "role")
     private String role;
+
+    @Column(name = "salt")
     private String salt;
+
+    @Column(name = "encryptedPass")
     private String encryptedPass;
 }

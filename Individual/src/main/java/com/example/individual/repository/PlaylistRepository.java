@@ -1,5 +1,7 @@
 package com.example.individual.repository;
 
+import com.example.individual.domain.Playlist;
+import com.example.individual.domain.Song;
 import com.example.individual.repository.entity.PlaylistEntity;
 import com.example.individual.repository.entity.SongEntity;
 
@@ -11,10 +13,10 @@ public interface PlaylistRepository {
     boolean existsById(Long id);
     Optional<PlaylistEntity> findById(Long id);
 
-    PlaylistEntity save(PlaylistEntity playlist);
+    Playlist save(Playlist playlist);
 
     int count();
-    List<PlaylistEntity> findAllByUserId(long id);
-    List<PlaylistEntity> findAll();
-    List<SongEntity> getSongs(long id);
+    List<Playlist> findAllByUserId(long id);
+    List<Playlist> findAll();
+    List<Song> getSongs(long id);
 }

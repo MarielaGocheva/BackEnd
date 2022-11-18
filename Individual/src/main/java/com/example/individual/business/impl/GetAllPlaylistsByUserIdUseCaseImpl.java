@@ -4,8 +4,8 @@ import com.example.individual.business.GetAllPlaylistsByUserIdUseCase;
 import com.example.individual.domain.GetAllPlaylistsByUserIdRequest;
 import com.example.individual.domain.GetAllPlaylistsByUserIdResponse;
 import com.example.individual.domain.Playlist;
+import com.example.individual.repository.converter.PlaylistConverter;
 import com.example.individual.repository.PlaylistRepository;
-import com.example.individual.repository.entity.PlaylistEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ public class GetAllPlaylistsByUserIdUseCaseImpl implements GetAllPlaylistsByUser
 
     @Override
     public GetAllPlaylistsByUserIdResponse getPlaylists(final GetAllPlaylistsByUserIdRequest request) {
-        List<PlaylistEntity> results;
+        List<Playlist> results;
         if (request.getUserId() >= 1) {
             results = playlistRepository.findAllByUserId(request.getUserId());
         } else {
@@ -26,11 +26,7 @@ public class GetAllPlaylistsByUserIdUseCaseImpl implements GetAllPlaylistsByUser
         }
 
         final GetAllPlaylistsByUserIdResponse response = new GetAllPlaylistsByUserIdResponse();
-        List<Playlist> playlists = results
-                .stream()
-                .map(PlaylistConverter::convert)
-                .toList();
-        response.setPlaylists(playlists);
+        response.setPlaylists(results);
 
         return response;
     }

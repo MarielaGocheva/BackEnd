@@ -4,6 +4,7 @@ package com.example.individual.business.impl;
 import com.example.individual.business.CreateUserUseCase;
 import com.example.individual.domain.CreateUserRequest;
 import com.example.individual.domain.CreateUserResponse;
+import com.example.individual.domain.User;
 import com.example.individual.repository.UserRepository;
 import com.example.individual.repository.entity.UserEntity;
 import lombok.AllArgsConstructor;
@@ -21,15 +22,15 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
             throw new RuntimeException();
         }
 
-        UserEntity savedUser = saveNewUser(request);
+        User savedUser = saveNewUser(request);
 
         return CreateUserResponse.builder()
                 .userId(savedUser.getId())
                 .build();
     }
 
-    private UserEntity saveNewUser(CreateUserRequest request) {
-        UserEntity newUser = UserEntity.builder()
+    private User saveNewUser(CreateUserRequest request) {
+        User newUser = User.builder()
                 //Missing information
                 .id(request.getId())
                 .fName(request.getFName())
