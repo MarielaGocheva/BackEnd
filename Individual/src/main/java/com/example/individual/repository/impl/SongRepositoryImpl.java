@@ -9,7 +9,6 @@ import java.util.List;
 
 @Repository
 public class SongRepositoryImpl implements SongRepository {
-    private static long NEXT_ID = 1;
     private final List<SongEntity> addedSongs;
 
     public SongRepositoryImpl() {

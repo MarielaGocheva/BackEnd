@@ -6,7 +6,6 @@ import com.example.individual.domain.CreateUserRequest;
 import com.example.individual.domain.CreateUserResponse;
 import com.example.individual.domain.User;
 import com.example.individual.repository.UserRepository;
-import com.example.individual.repository.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -20,12 +20,14 @@ public class UsersController {
     private final GetUsersUseCase getUsersUseCase;
 
     @GetMapping("{id}")
-    public ResponseEntity<User> getUser(@PathVariable(value = "id") final long id) {
-        final User user = getUserUseCase.getUser(id);
-        if (user.equals(null)) {
+    public ResponseEntity<GetUserResponse> getUser(@PathVariable(value = "id") long id,
+                                                   @RequestBody GetUserRequest request) {
+        request.setId(id);
+        GetUserResponse response = getUserUseCase.getUser(request);
+        if (response.equals(null)) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok().body(user);
+        return ResponseEntity.ok().body(response);
     }
 
     @GetMapping

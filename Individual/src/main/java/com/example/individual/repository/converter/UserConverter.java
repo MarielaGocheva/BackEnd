@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class UserConverter {
-    public User ConvertToUser(UserEntity user) {
+    public User convertToUser(UserEntity user) {
         return User.builder()
                 .id(user.getId())
                 .fName(user.getFName())
@@ -18,7 +18,7 @@ public class UserConverter {
                 .build();
     }
 
-    public UserEntity ConvertToUserEntity(User user) {
+    public UserEntity convertToUserEntity(User user) {
         return UserEntity.builder()
                 .id(user.getId())
                 .fName(user.getFName())

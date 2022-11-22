@@ -27,7 +27,7 @@ class UserConverterTest {
                 .encryptedPass("###")
                 .build();
 
-        User actual = userConverter.ConvertToUser(userTobeConverted);
+        User actual = userConverter.convertToUser(userTobeConverted);
 
         User expected = User.builder()
                 .id(1L)

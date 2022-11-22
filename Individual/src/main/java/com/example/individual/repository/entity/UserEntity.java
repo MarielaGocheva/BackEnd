@@ -1,7 +1,6 @@
 package com.example.individual.repository.entity;
 
 import lombok.*;
-import org.springframework.context.annotation.Bean;
 
 import javax.persistence.*;
 

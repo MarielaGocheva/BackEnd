@@ -13,28 +13,30 @@ import java.util.List;
 public class PlaylistConverter {
 
     private SongConverter songConverter;
-    public Playlist ConvertToPlaylist(PlaylistEntity playlist) {
+    public Playlist convertToPlaylist(PlaylistEntity playlist) {
         List<Song> convertedSongs = new ArrayList<>();
         for (SongEntity song : playlist.getSongs())
         {
-            convertedSongs.add(songConverter.ConvertToSong(song));
+            convertedSongs.add(songConverter.convertToSong(song));
         }
         return Playlist.builder()
                 .id(playlist.getId())
                 .userId(playlist.getUserId())
+                .title(playlist.getTitle())
                 .duration(playlist.getDuration())
                 .songs(convertedSongs)
                 .build();
     }
 
-    public PlaylistEntity ConvertToPlaylistEntity(Playlist playlist) {
+    public PlaylistEntity convertToPlaylistEntity(Playlist playlist) {
         List<SongEntity> convertedSongs = new ArrayList<>();
         for (Song song : playlist.getSongs()) {
-            convertedSongs.add(songConverter.ConvertToSongEntity(song));
+            convertedSongs.add(songConverter.convertToSongEntity(song));
         }
         return PlaylistEntity.builder()
                 .id(playlist.getId())
                 .userId(playlist.getUserId())
+                .title(playlist.getTitle())
                 .duration(playlist.getDuration())
                 .songs(convertedSongs)
                 .build();

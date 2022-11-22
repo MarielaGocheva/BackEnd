@@ -5,7 +5,6 @@ import com.example.individual.business.UpdateUserUseCase;
 import com.example.individual.domain.UpdateUserRequest;
 import com.example.individual.domain.User;
 import com.example.individual.repository.UserRepository;
-import com.example.individual.repository.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

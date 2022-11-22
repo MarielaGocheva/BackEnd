@@ -28,7 +28,7 @@ public class UserRepositoryImpl implements UserRepository {
     public User findById(Long userId) {
         for (UserEntity user : savedUsers){
             if (user.getId() == userId){
-                return userConverter.ConvertToUser(user);
+                return userConverter.convertToUser(user);
             }
         }
         return null;
@@ -38,7 +38,7 @@ public class UserRepositoryImpl implements UserRepository {
     public User save(User user) {
         user.setId(NEXT_ID);
         NEXT_ID++;
-        this.savedUsers.add(userConverter.ConvertToUserEntity(user));
+        this.savedUsers.add(userConverter.convertToUserEntity(user));
         return user;
     }
 
@@ -60,7 +60,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public List<User> findAll() {
-        return Collections.unmodifiableList(savedUsers.stream().map(userEntity -> userConverter.ConvertToUser(userEntity)).toList());
+        return Collections.unmodifiableList(savedUsers.stream().map(userEntity -> userConverter.convertToUser(userEntity)).toList());
     }
 
 }

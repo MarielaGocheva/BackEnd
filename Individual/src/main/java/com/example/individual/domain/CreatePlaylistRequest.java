@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class GetUserRequest {
-    private Long id;
+public class CreatePlaylistRequest {
+    private long userId;
+    private String name;
 }

@@ -30,7 +30,7 @@ class PlaylistConverterTest {
                 .duration(44D)
                 .build();
 
-        Playlist actual = playlistConverter.ConvertToPlaylist(playlistTobeConverted);
+        Playlist actual = playlistConverter.convertToPlaylist(playlistTobeConverted);
 
         List<Song> songs2 = new ArrayList<>();
         Playlist expected = Playlist.builder()

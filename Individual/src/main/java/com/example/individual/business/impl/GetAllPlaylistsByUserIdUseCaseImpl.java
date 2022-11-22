@@ -4,7 +4,6 @@ import com.example.individual.business.GetAllPlaylistsByUserIdUseCase;
 import com.example.individual.domain.GetAllPlaylistsByUserIdRequest;
 import com.example.individual.domain.GetAllPlaylistsByUserIdResponse;
 import com.example.individual.domain.Playlist;
-import com.example.individual.repository.converter.PlaylistConverter;
 import com.example.individual.repository.PlaylistRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -25,7 +25,7 @@ class SongConverterTest {
                 .imageUrl("###")
                 .build();
 
-        Song actual = songConverter.ConvertToSong(songTobeConverted);
+        Song actual = songConverter.convertToSong(songTobeConverted);
 
         Song expected = Song.builder()
                 .id(1L)

@@ -21,7 +21,7 @@ public class DatabaseDataInitializer {
     private UserRepository userRepository;
     private PlaylistRepository playlistRepository;
     private SongRepository songRepository;
-    private List<Song> songs = new ArrayList<>();
+    private List<Song> songs;
 
     @EventListener(ApplicationReadyEvent.class)
     public void populateDatabaseInitialDummyData() {
@@ -31,10 +31,18 @@ public class DatabaseDataInitializer {
             userRepository.save(User.builder().id(3L).email("gmail").fName("Sebastian").lName("Soto").role("DJ").build());
         }
         if(playlistRepository.count() == 0){
+            Song song = Song.builder().songUri("hh").artist("audioslave").imageUrl("dd").duration(5D).build();
+            songs.add(song);
             playlistRepository.save(Playlist.builder().id(1L).userId(1L).duration(120D).songs(songs).build());
             playlistRepository.save(Playlist.builder().id(2L).userId(1L).duration(128D).songs(songs).build());
             playlistRepository.save(Playlist.builder().id(3L).userId(1L).duration(360D).songs(songs).build());
             playlistRepository.save(Playlist.builder().id(4L).userId(2L).duration(540D).songs(songs).build());
+            playlistRepository.save(Playlist.builder().id(5L).userId(2L).duration(540D).songs(songs).build());
+            playlistRepository.save(Playlist.builder().id(6L).userId(2L).duration(540D).songs(songs).build());
+            playlistRepository.save(Playlist.builder().id(7L).userId(2L).duration(540D).songs(songs).build());
+            playlistRepository.save(Playlist.builder().id(8L).userId(2L).duration(540D).songs(songs).build());
+            playlistRepository.save(Playlist.builder().id(9L).userId(2L).duration(540D).songs(songs).build());
+            playlistRepository.save(Playlist.builder().id(10L).userId(2L).duration(540D).songs(songs).build());
         }
     }
 }

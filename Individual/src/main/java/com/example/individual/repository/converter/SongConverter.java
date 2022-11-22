@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class SongConverter {
-    public Song ConvertToSong(SongEntity song) {
+    public Song convertToSong(SongEntity song) {
         return Song.builder()
                 .id(song.getId())
                 .songUri(song.getSongUri())
@@ -16,7 +16,7 @@ public class SongConverter {
                 .build();
     }
 
-    public SongEntity ConvertToSongEntity(Song song) {
+    public SongEntity convertToSongEntity(Song song) {
         return SongEntity.builder()
                 .id(song.getId())
                 .songUri(song.getSongUri())

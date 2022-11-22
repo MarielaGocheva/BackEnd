@@ -1,6 +1,6 @@
 package com.example.individual.repository.entity;
 
-import com.sun.istack.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +20,7 @@ public class SongEntity {
     @Column(name = "id")
     private Long id;
 
-    @NotNull
+//    @NotBlank
     @Column (name = "songUri")
     private String songUri;
 

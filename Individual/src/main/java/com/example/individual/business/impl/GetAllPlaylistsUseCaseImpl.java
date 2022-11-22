@@ -2,9 +2,7 @@ package com.example.individual.business.impl;
 
 import com.example.individual.business.GetAllPlaylistsUseCase;
 import com.example.individual.domain.*;
-import com.example.individual.repository.converter.PlaylistConverter;
 import com.example.individual.repository.PlaylistRepository;
-import com.example.individual.repository.entity.PlaylistEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

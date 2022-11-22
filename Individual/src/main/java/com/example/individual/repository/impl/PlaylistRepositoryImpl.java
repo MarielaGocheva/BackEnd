@@ -34,11 +34,15 @@ public class PlaylistRepositoryImpl implements PlaylistRepository {
     }
 
     @Override
-    public Playlist save(Playlist playlist) {
+    public List<Playlist> save(Playlist playlist) {
         playlist.setId(NEXT_ID);
         NEXT_ID++;
-        this.savedPlaylists.add(playlistConverter.ConvertToPlaylistEntity(playlist));
-        return playlist;
+        this.savedPlaylists.add(playlistConverter.convertToPlaylistEntity(playlist));
+        List<Playlist> results = new ArrayList<>();
+        for (PlaylistEntity playlistEntity : savedPlaylists) {
+            results.add(playlistConverter.convertToPlaylist(playlistEntity));
+        }
+        return results;
     }
 
     @Override
@@ -63,7 +67,7 @@ public class PlaylistRepositoryImpl implements PlaylistRepository {
         for (PlaylistEntity pl : savedPlaylists)
         {
             if(pl.getUserId() == id)   {
-                results.add(playlistConverter.ConvertToPlaylist(pl));
+                results.add(playlistConverter.convertToPlaylist(pl));
             }
         }
         return results;
@@ -73,7 +77,7 @@ public class PlaylistRepositoryImpl implements PlaylistRepository {
     public List<Playlist> findAll() {
         List<Playlist> playlists = new ArrayList<>();
         for (PlaylistEntity pl : savedPlaylists){
-            playlists.add(playlistConverter.ConvertToPlaylist(pl));
+            playlists.add(playlistConverter.convertToPlaylist(pl));
         }
         return playlists;
     }
@@ -81,12 +85,12 @@ public class PlaylistRepositoryImpl implements PlaylistRepository {
     @Override
     public List<Song> getSongs(long id)
     {
-        List<Song> songs = new ArrayList<>();
-//        for (PlaylistEntity pl : savedPlaylists){
-//            if(pl.getId() == id){
-//                songs = pl.getSongs();
-//            }
-//        }
-        return songs;
+        Playlist playlist = new Playlist();
+        for (PlaylistEntity pl : savedPlaylists){
+            if(pl.getId() == id){
+               playlist = playlistConverter.convertToPlaylist(pl);
+            }
+        }
+        return playlist.getSongs();
     };
 }

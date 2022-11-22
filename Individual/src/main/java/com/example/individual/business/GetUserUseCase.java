@@ -1,8 +1,10 @@
 package com.example.individual.business;
 
+import com.example.individual.domain.GetUserRequest;
+import com.example.individual.domain.GetUserResponse;
 import com.example.individual.domain.User;
 
 
 public interface GetUserUseCase {
-    User getUser(long studentId);
+    GetUserResponse getUser(GetUserRequest request);
 }

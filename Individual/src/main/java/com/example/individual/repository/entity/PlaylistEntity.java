@@ -1,6 +1,5 @@
 package com.example.individual.repository.entity;
 
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,7 +17,10 @@ public class PlaylistEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @Column(name = "title")
+    private String title;
+
+//    @NotNull
     @JoinColumn(name = "userId")
     private Long userId;
 

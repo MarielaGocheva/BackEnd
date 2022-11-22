@@ -1,9 +1,6 @@
 package com.example.individual.controller;
 
-import com.example.individual.business.AddSongUseCase;
-import com.example.individual.business.GetAllPlaylistsByUserIdUseCase;
-import com.example.individual.business.GetAllPlaylistsUseCase;
-import com.example.individual.business.GetPlaylistSongsUseCase;
+import com.example.individual.business.*;
 import com.example.individual.domain.*;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +17,25 @@ public class PlaylistsController {
 
     private final GetAllPlaylistsUseCase getAllPlaylistsUseCase;
     private final GetPlaylistSongsUseCase getPlaylistSongsUseCase;
-    //check
+    private final CreatePlaylistUseCase createPlaylistUseCase;
 
     @Autowired
     private final AddSongUseCase addSongUseCase;
-    //try
+
     @GetMapping("/byUser")
     public ResponseEntity<GetAllPlaylistsByUserIdResponse> getAllPlaylistsByUserId(@RequestParam(value = "userId", required = false) long userId) {
         GetAllPlaylistsByUserIdRequest request = GetAllPlaylistsByUserIdRequest.builder().userId(userId).build();
         GetAllPlaylistsByUserIdResponse response = getAllPlaylistsByUserIdUseCase.getPlaylists(request);
         return ResponseEntity.ok(response);
     }
-    //try
+
+    @PostMapping
+    public ResponseEntity<CreatePlaylistResponse> createPlaylist(@RequestBody CreatePlaylistRequest request) {
+//        CreatePlaylistRequest request = CreatePlaylistRequest.builder().userId(Long.parseLong(userId)).name(name).build();
+        CreatePlaylistResponse response = createPlaylistUseCase.createPlaylist(request);
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping
     public ResponseEntity<GetAllPlaylistsResponse> getAllPlaylists() {
         GetAllPlaylistsResponse response = getAllPlaylistsUseCase.getPlaylists();
