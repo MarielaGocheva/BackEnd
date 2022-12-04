@@ -22,8 +22,8 @@ public class PlaylistsController {
     @Autowired
     private final AddSongUseCase addSongUseCase;
 
-    @GetMapping("/byUser")
-    public ResponseEntity<GetAllPlaylistsByUserIdResponse> getAllPlaylistsByUserId(@RequestParam(value = "userId", required = false) long userId) {
+    @GetMapping("{userId}")
+    public ResponseEntity<GetAllPlaylistsByUserIdResponse> getAllPlaylistsByUserId(@PathVariable (value = "userId") long userId) {
         GetAllPlaylistsByUserIdRequest request = GetAllPlaylistsByUserIdRequest.builder().userId(userId).build();
         GetAllPlaylistsByUserIdResponse response = getAllPlaylistsByUserIdUseCase.getPlaylists(request);
         return ResponseEntity.ok(response);
@@ -49,11 +49,5 @@ public class PlaylistsController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/addSong")
-    public ResponseEntity<AddSongResponse> addSong(@RequestParam (value = "playlistId", required = false) long playlistId,
-                                                   @RequestParam (value = "songUri", required = false) String songUri) {
-        AddSongRequest request = AddSongRequest.builder().playlistId(playlistId).songUri(songUri).build();
-        AddSongResponse response = addSongUseCase.addSong(request);
-        return ResponseEntity.ok(response);
-    }
+
 }

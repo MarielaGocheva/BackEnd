@@ -18,7 +18,7 @@ public class GetAllPlaylistsByUserIdUseCaseImpl implements GetAllPlaylistsByUser
     @Override
     public GetAllPlaylistsByUserIdResponse getPlaylists(final GetAllPlaylistsByUserIdRequest request) {
         List<Playlist> results;
-        if (request.getUserId() >= 1) {
+        if (request.getUserId() >= 0) {
             results = playlistRepository.findAllByUserId(request.getUserId());
         } else {
             results = null;

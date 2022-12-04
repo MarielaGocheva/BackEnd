@@ -63,4 +63,14 @@ public class UserRepositoryImpl implements UserRepository {
         return Collections.unmodifiableList(savedUsers.stream().map(userEntity -> userConverter.convertToUser(userEntity)).toList());
     }
 
+    @Override
+    public User findByEmail(String email) {
+        for (UserEntity user : savedUsers) {
+            if(user.getEmail() == email){
+                return userConverter.convertToUser(user);
+            }
+        }
+        return null;
+    }
+
 }

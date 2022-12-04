@@ -64,8 +64,7 @@ public class PlaylistRepositoryImpl implements PlaylistRepository {
     @Override
     public List<Playlist> findAllByUserId(long id) {
         List<Playlist> results = new ArrayList<>();
-        for (PlaylistEntity pl : savedPlaylists)
-        {
+        for (PlaylistEntity pl : savedPlaylists) {
             if(pl.getUserId() == id)   {
                 results.add(playlistConverter.convertToPlaylist(pl));
             }

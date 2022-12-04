@@ -28,9 +28,7 @@ public class UserEntity {
     @Column(name = "role")
     private String role;
 
-    @Column(name = "salt")
-    private String salt;
+    @Column(name = "password")
+    private String password;
 
-    @Column(name = "encryptedPass")
-    private String encryptedPass;
 }

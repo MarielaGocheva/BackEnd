@@ -13,8 +13,7 @@ public class UserConverter {
                 .lName(user.getLName())
                 .email(user.getEmail())
                 .role(user.getRole())
-                .salt(user.getSalt())
-                .encryptedPass((user.getEncryptedPass()))
+                .password(user.getPassword())
                 .build();
     }
 
@@ -25,8 +24,7 @@ public class UserConverter {
                 .lName(user.getLName())
                 .email(user.getEmail())
                 .role(user.getRole())
-                .salt(user.getSalt())
-                .encryptedPass((user.getEncryptedPass()))
+                .password(user.getPassword())
                 .build();
     }
 }

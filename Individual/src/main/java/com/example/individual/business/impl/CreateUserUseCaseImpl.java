@@ -2,6 +2,7 @@ package com.example.individual.business.impl;
 
 
 import com.example.individual.business.CreateUserUseCase;
+import com.example.individual.business.exceptions.UserAlreadyExists;
 import com.example.individual.domain.CreateUserRequest;
 import com.example.individual.domain.CreateUserResponse;
 import com.example.individual.domain.User;
@@ -16,9 +17,8 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
 
     @Override
     public CreateUserResponse createUser(CreateUserRequest request) {
-        if (userRepository.existsById(request.getId())) {
-            //Change the exception type
-            throw new RuntimeException();
+        if (userRepository.findByEmail(request.getEmail()).equals(null)) {
+            throw new UserAlreadyExists();
         }
 
         User savedUser = saveNewUser(request);
@@ -30,12 +30,11 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
 
     private User saveNewUser(CreateUserRequest request) {
         User newUser = User.builder()
-                //Missing information
-                .id(request.getId())
                 .fName(request.getFName())
                 .lName(request.getLName())
                 .email(request.getEmail())
                 .role(request.getRole())
+                .password(request.getPassword())
                 .build();
         return userRepository.save(newUser);
     }
