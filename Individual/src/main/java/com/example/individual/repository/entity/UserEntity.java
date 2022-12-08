@@ -13,13 +13,13 @@ import javax.persistence.*;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "user_id")
     private Long id;
 
-    @Column(name = "fName")
+    @Column(name = "f_name")
     private String fName;
 
-    @Column(name = "lName")
+    @Column(name = "l_name")
     private String lName;
 
     @Column(name = "email")

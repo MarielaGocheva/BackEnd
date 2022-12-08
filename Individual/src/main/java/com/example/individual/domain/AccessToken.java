@@ -13,15 +13,15 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AccessToken {
-    private String email;
-    private String role;
+    private String subject;
+    private List<String> roles;
     private Long userId;
 
     @JsonIgnore
     public boolean hasRole(String roleName) {
-        if (role == null) {
+        if (roles == null) {
             return false;
         }
-        return role.contains(roleName);
+        return roles.contains(roleName);
     }
 }

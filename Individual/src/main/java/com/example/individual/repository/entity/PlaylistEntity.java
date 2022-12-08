@@ -13,15 +13,16 @@ import java.util.List;
 @NoArgsConstructor
 public class PlaylistEntity {
     @Id
-    @Column(name = "id")
+    @Column(name = "playlist_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long playlistId;
 
     @Column(name = "title")
     private String title;
 
 //    @NotNull
-    @JoinColumn(name = "userId")
+//    @OneToOne
+    @JoinColumn(name = "user_id")
     private Long userId;
 
     @Column (name = "duration")
@@ -29,6 +30,13 @@ public class PlaylistEntity {
     @EqualsAndHashCode.Exclude
     private Double duration;
 
-    @OneToMany(mappedBy = "playlist")
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "playlist_songs",
+            joinColumns = { @JoinColumn(name = "playlist_id") },
+            inverseJoinColumns = { @JoinColumn(name = "song_id") })
     private List<SongEntity> songs;
 }

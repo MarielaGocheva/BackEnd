@@ -1,12 +1,13 @@
-package com.example.individual.repository.converter;
+package com.example.individual.business.converter;
 
 import com.example.individual.domain.User;
 import com.example.individual.repository.entity.UserEntity;
-import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
-public class UserConverter {
-    public User convertToUser(UserEntity user) {
+public final class UserConverter {
+    public UserConverter(){
+
+    }
+    public static User convertToUser(UserEntity user) {
         return User.builder()
                 .id(user.getId())
                 .fName(user.getFName())
@@ -17,7 +18,7 @@ public class UserConverter {
                 .build();
     }
 
-    public UserEntity convertToUserEntity(User user) {
+    public static UserEntity convertToUserEntity(User user) {
         return UserEntity.builder()
                 .id(user.getId())
                 .fName(user.getFName())

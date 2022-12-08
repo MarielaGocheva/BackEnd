@@ -1,6 +1,7 @@
 package com.example.individual.business.impl;
 
 import com.example.individual.business.CreatePlaylistUseCase;
+import com.example.individual.business.converter.PlaylistConverter;
 import com.example.individual.domain.CreatePlaylistRequest;
 import com.example.individual.domain.CreatePlaylistResponse;
 import com.example.individual.domain.Playlist;
@@ -25,9 +26,9 @@ public class CreatePlaylistUseCaseImpl implements CreatePlaylistUseCase {
 //        }
         List<Song> songs = new ArrayList<>();
         Playlist playlist = Playlist.builder().userId(request.getUserId()).title(request.getName()).songs(songs).duration(0D).build();
-        List<Playlist> playlists = playlistRepository.save(playlist);
+       Playlist savedPlaylist = PlaylistConverter.convertToPlaylist(playlistRepository.save(PlaylistConverter.convertToPlaylistEntity(playlist)));
         return CreatePlaylistResponse.builder()
-                .playlists(playlists)
+                .playlist(savedPlaylist)
                 .build();
     }
 }

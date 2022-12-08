@@ -9,6 +9,5 @@ import java.util.List;
 @Data
 @Builder
 public class CreatePlaylistResponse {
-    @Getter
-    private List<Playlist> playlists;
+    private Playlist playlist;
 }

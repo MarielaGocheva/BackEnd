@@ -38,7 +38,8 @@ public class UsersController {
     }
 
     @PostMapping()
-    public ResponseEntity<CreateUserResponse> createUser(@RequestBody CreateUserRequest request) {
+    public ResponseEntity<CreateUserResponse> createUser(@PathVariable("id") long id, @RequestBody CreateUserRequest request) {
+        request.setId(id);
         CreateUserResponse response = createUserUseCase.createUser(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
@@ -46,7 +47,7 @@ public class UsersController {
     @PutMapping("{id}")
     public ResponseEntity<Void> updateUser(@PathVariable("id") long id,
                                               @RequestBody  UpdateUserRequest request) {
-        request.setId(id);
+//        request.setId(id);
         updateUserUseCase.updateUser(request);
         return ResponseEntity.noContent().build();
     }

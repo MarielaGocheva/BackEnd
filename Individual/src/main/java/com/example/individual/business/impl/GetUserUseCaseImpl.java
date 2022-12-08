@@ -1,6 +1,7 @@
 package com.example.individual.business.impl;
 
 import com.example.individual.business.GetUserUseCase;
+import com.example.individual.business.converter.UserConverter;
 import com.example.individual.domain.GetUserRequest;
 import com.example.individual.domain.GetUserResponse;
 import com.example.individual.domain.User;
@@ -17,7 +18,7 @@ public class GetUserUseCaseImpl implements GetUserUseCase {
 
     @Override
     public GetUserResponse getUser(GetUserRequest request) {
-        User user = userRepository.findById(request.getId());
+        User user = UserConverter.convertToUser(userRepository.findUserById(request.getId()));
         return GetUserResponse.builder().user(user).build();
     }
 }

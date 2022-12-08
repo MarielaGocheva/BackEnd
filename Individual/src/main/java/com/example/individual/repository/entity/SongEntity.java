@@ -10,6 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "song")
+//@SecondaryTables(@SecondaryTable(name="playlist_songs", pkJoinColumns=@PrimaryKeyJoinColumn(name="song_id")))
 @Builder
 @Data
 @AllArgsConstructor
@@ -17,11 +18,10 @@ import javax.persistence.*;
 public class SongEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "song_id")
     private Long id;
 
-//    @NotBlank
-    @Column (name = "songUri")
+    @Column (name = "song_uri")
     private String songUri;
 
     @Column(name = "artist")
@@ -30,6 +30,10 @@ public class SongEntity {
     @Column(name = "duration")
     private Double duration;
 
-    @Column(name = "imageUrl")
+    @Column(name = "image_url")
     private String imageUrl;
+
+//    @Column(name = "playlist_id")
+//    @JoinColumn(name = "playlist_id")
+//    private Long playlistId;
 }
