@@ -1,24 +1,39 @@
 package com.example.individual.repository.entity;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "song")
+//@SecondaryTables(@SecondaryTable(name="playlist_songs", pkJoinColumns=@PrimaryKeyJoinColumn(name="song_id")))
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class SongEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "song_id")
     private Long id;
+
+    @Column (name = "song_uri")
     private String songUri;
+
+    @Column(name = "artist")
     private String artist;
-    private int duration;
+
+    @Column(name = "duration")
+    private Double duration;
+
+    @Column(name = "image_url")
     private String imageUrl;
-    private Long playlistId;
+
+//    @Column(name = "playlist_id")
+//    @JoinColumn(name = "playlist_id")
+//    private Long playlistId;
 }

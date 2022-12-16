@@ -1,12 +1,18 @@
 package com.example.individual.controller;
 
 import com.example.individual.business.*;
+import com.example.individual.configuration.security.isAuthenticated.IsAuthenticated;
 import com.example.individual.domain.*;
 import lombok.AllArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.HtmlUtils;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
 
 @RestController
@@ -18,14 +24,17 @@ public class UsersController {
     private final UpdateUserUseCase updateUserUseCase;
     private final GetUserUseCase getUserUseCase;
     private final GetUsersUseCase getUsersUseCase;
+    private final GetArtistPageInfoUseCase getArtistPageInfoUseCase;
 
     @GetMapping("{id}")
-    public ResponseEntity<User> getUser(@PathVariable(value = "id") final long id) {
-        final Optional<User> userOptional = getUserUseCase.getUser(id);
-        if (userOptional.isEmpty()) {
+    public ResponseEntity<GetUserResponse> getUser(@PathVariable(value = "id") long id,
+                                                   @RequestBody GetUserRequest request) {
+        request.setId(id);
+        GetUserResponse response = getUserUseCase.getUser(request);
+        if (response.equals(null)) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok().body(userOptional.get());
+        return ResponseEntity.ok().body(response);
     }
 
     @GetMapping
@@ -36,7 +45,8 @@ public class UsersController {
     }
 
     @PostMapping()
-    public ResponseEntity<CreateUserResponse> createUser(@RequestBody CreateUserRequest request) {
+    public ResponseEntity<CreateUserResponse> createUser(@PathVariable("id") long id, @RequestBody CreateUserRequest request) {
+        request.setId(id);
         CreateUserResponse response = createUserUseCase.createUser(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
@@ -44,8 +54,16 @@ public class UsersController {
     @PutMapping("{id}")
     public ResponseEntity<Void> updateUser(@PathVariable("id") long id,
                                               @RequestBody  UpdateUserRequest request) {
-        request.setId(id);
+//        request.setId(id);
         updateUserUseCase.updateUser(request);
         return ResponseEntity.noContent().build();
+    }
+
+    @IsAuthenticated
+    @GetMapping("/artist/{id}")
+    public ResponseEntity<GetArtistPageInfoResponse> findArtist (@PathVariable (value = "id") long id) {
+        GetArtistPageInfoRequest request = GetArtistPageInfoRequest.builder().id(id).build();
+        GetArtistPageInfoResponse response = getArtistPageInfoUseCase.findArtist(request);
+        return ResponseEntity.ok(response);
     }
 }

@@ -3,11 +3,9 @@ package com.example.individual.business.impl;
 import com.example.individual.domain.CreateUserRequest;
 import com.example.individual.domain.CreateUserResponse;
 import com.example.individual.repository.UserRepository;
-import com.example.individual.repository.UserRepositoryImpl;
 import com.example.individual.repository.entity.UserEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -18,7 +16,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class CreateUserUseCaseImplTest {
     @Mock
-    private UserRepository userRepositoryMock = mock(UserRepositoryImpl.class);
+    private UserRepository userRepositoryMock = mock(UserRepository.class);
 
     @Mock
     private CreateUserRequest request = mock(CreateUserRequest.class);

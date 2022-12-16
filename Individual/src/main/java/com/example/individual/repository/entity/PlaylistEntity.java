@@ -1,25 +1,42 @@
 package com.example.individual.repository.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "playlist")
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class PlaylistEntity {
     @Id
-    private Long id;
+    @Column(name = "playlist_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long playlistId;
+
+    @Column(name = "title")
+    private String title;
+
+//    @NotNull
+//    @OneToOne
+    @JoinColumn(name = "user_id")
     private Long userId;
-    private int duration;
-    @OneToMany
+
+    @Column (name = "duration")
+//    @Length(max = 10)
+    @EqualsAndHashCode.Exclude
+    private Double duration;
+
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "playlist_songs",
+            joinColumns = { @JoinColumn(name = "playlist_id") },
+            inverseJoinColumns = { @JoinColumn(name = "song_id") })
     private List<SongEntity> songs;
 }

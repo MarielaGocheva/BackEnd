@@ -1,9 +1,10 @@
 package com.example.individual.business;
 
+import com.example.individual.domain.GetUserRequest;
+import com.example.individual.domain.GetUserResponse;
 import com.example.individual.domain.User;
 
-import java.util.Optional;
 
 public interface GetUserUseCase {
-    Optional<User> getUser(long studentId);
+    GetUserResponse getUser(GetUserRequest request);
 }

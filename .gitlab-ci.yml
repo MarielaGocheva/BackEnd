@@ -35,4 +35,5 @@ sonarqube-check:
   allow_failure: true
   only:
       - dev
+      - creating-playlist-feature
  
