@@ -14,6 +14,7 @@ CREATE TABLE if not exists playlist
 (
     id         bigint NOT NULL AUTO_INCREMENT,
     userId      bigint NOT NULL,
+    title       varchar(50),
     duration    float(24),
     PRIMARY KEY (id),
     FOREIGN KEY (userId) REFERENCES user (id)

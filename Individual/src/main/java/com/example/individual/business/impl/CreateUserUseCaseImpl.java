@@ -2,25 +2,31 @@ package com.example.individual.business.impl;
 
 
 import com.example.individual.business.CreateUserUseCase;
+import com.example.individual.business.converter.UserConverter;
+import com.example.individual.business.exceptions.UserAlreadyExists;
 import com.example.individual.domain.CreateUserRequest;
 import com.example.individual.domain.CreateUserResponse;
 import com.example.individual.domain.User;
+import com.example.individual.domain.enums.Role;
 import com.example.individual.repository.UserRepository;
-import com.example.individual.repository.entity.UserEntity;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CreateUserUseCaseImpl implements CreateUserUseCase {
     private final UserRepository userRepository;
 
     @Override
     public CreateUserResponse createUser(CreateUserRequest request) {
-        if (userRepository.existsById(request.getId())) {
-            //Change the exception type
-            throw new RuntimeException();
-        }
+//        if (userRepository.existsByEmail(request.getEmail())) {
+//            throw new UserAlreadyExists();
+//        }
 
         User savedUser = saveNewUser(request);
 
@@ -31,13 +37,12 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
 
     private User saveNewUser(CreateUserRequest request) {
         User newUser = User.builder()
-                //Missing information
-                .id(request.getId())
                 .fName(request.getFName())
                 .lName(request.getLName())
                 .email(request.getEmail())
-                .role(request.getRole())
+                .role(Role.valueOf(request.getRole()))
+                .password(request.getPassword())
                 .build();
-        return userRepository.save(newUser);
+        return UserConverter.convertToUser(userRepository.save(UserConverter.convertToUserEntity(newUser)));
     }
 }

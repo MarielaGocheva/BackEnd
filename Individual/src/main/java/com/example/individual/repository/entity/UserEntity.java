@@ -1,7 +1,6 @@
 package com.example.individual.repository.entity;
 
 import lombok.*;
-import org.springframework.context.annotation.Bean;
 
 import javax.persistence.*;
 
@@ -14,13 +13,13 @@ import javax.persistence.*;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "user_id")
     private Long id;
 
-    @Column(name = "fName")
+    @Column(name = "f_name")
     private String fName;
 
-    @Column(name = "lName")
+    @Column(name = "l_name")
     private String lName;
 
     @Column(name = "email")
@@ -29,9 +28,7 @@ public class UserEntity {
     @Column(name = "role")
     private String role;
 
-    @Column(name = "salt")
-    private String salt;
+    @Column(name = "password")
+    private String password;
 
-    @Column(name = "encryptedPass")
-    private String encryptedPass;
 }

@@ -2,19 +2,27 @@ package com.example.individual.repository;
 
 import com.example.individual.domain.User;
 import com.example.individual.repository.entity.UserEntity;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.Optional;
 
-public interface UserRepository  {
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
+
     boolean existsById(Long id);
+    boolean existsByEmail(String email);
 
-    User findById(Long id);
+    UserEntity findUserById(Long id);
 
-    User save(User user);
+    UserEntity save(UserEntity user);
 
-    int count();
-    List<User> findAll();
+//    int count();
+    List<UserEntity> findAll();
+
+    UserEntity findByEmail(String email);
 }
