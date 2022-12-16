@@ -2,10 +2,8 @@ package com.example.individual.business.impl;
 
 import com.example.individual.domain.CreateUserRequest;
 import com.example.individual.domain.CreateUserResponse;
-import com.example.individual.domain.User;
 import com.example.individual.repository.UserRepository;
 import com.example.individual.repository.entity.UserEntity;
-import com.example.individual.repository.impl.UserRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;

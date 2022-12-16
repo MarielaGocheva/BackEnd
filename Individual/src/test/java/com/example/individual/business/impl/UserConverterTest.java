@@ -1,7 +1,8 @@
 package com.example.individual.business.impl;
 
+import com.example.individual.business.converter.UserConverter;
 import com.example.individual.domain.User;
-import com.example.individual.repository.converter.UserConverter;
+import com.example.individual.domain.enums.Role;
 import com.example.individual.repository.entity.UserEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,8 +24,7 @@ class UserConverterTest {
                 .lName("Zarate")
                 .email("@gmail.com")
                 .role("DJ")
-                .salt("###")
-                .encryptedPass("###")
+                .password("###")
                 .build();
 
         User actual = userConverter.convertToUser(userTobeConverted);
@@ -34,9 +34,8 @@ class UserConverterTest {
                 .fName("Paula")
                 .lName("Zarate")
                 .email("@gmail.com")
-                .role("DJ")
-                .salt("###")
-                .encryptedPass("###")
+                .role(Role.valueOf("DJ"))
+                .password("###")
                 .build();
 
         assertEquals(expected, actual);

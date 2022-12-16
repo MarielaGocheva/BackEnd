@@ -23,7 +23,7 @@ class PlaylistConverterTest {
     void shouldConvertAllPlaylistFieldsToDomain() {
         List<SongEntity> songs = new ArrayList<>();
         PlaylistEntity playlistTobeConverted = PlaylistEntity.builder()
-                .id(1L)
+                .playlistId(1L)
                 .userId(2L)
                 .songs(songs)
                 .duration(44D)
