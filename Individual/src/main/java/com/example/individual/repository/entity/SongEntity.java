@@ -1,6 +1,6 @@
 package com.example.individual.repository.entity;
 
-
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +10,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "song")
-//@SecondaryTables(@SecondaryTable(name="playlist_songs", pkJoinColumns=@PrimaryKeyJoinColumn(name="song_id")))
 @Builder
 @Data
 @AllArgsConstructor
@@ -18,10 +17,11 @@ import javax.persistence.*;
 public class SongEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "song_id")
+    @Column(name = "id")
     private Long id;
 
-    @Column (name = "song_uri")
+    @NotNull
+    @Column (name = "songUri")
     private String songUri;
 
     @Column(name = "artist")
@@ -30,10 +30,6 @@ public class SongEntity {
     @Column(name = "duration")
     private Double duration;
 
-    @Column(name = "image_url")
+    @Column(name = "imageUrl")
     private String imageUrl;
-
-//    @Column(name = "playlist_id")
-//    @JoinColumn(name = "playlist_id")
-//    private Long playlistId;
 }

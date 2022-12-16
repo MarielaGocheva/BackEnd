@@ -1,5 +1,6 @@
 package com.example.individual.repository.entity;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,16 +14,12 @@ import java.util.List;
 @NoArgsConstructor
 public class PlaylistEntity {
     @Id
-    @Column(name = "playlist_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long playlistId;
+    private Long id;
 
-    @Column(name = "title")
-    private String title;
-
-//    @NotNull
-//    @OneToOne
-    @JoinColumn(name = "user_id")
+    @NotNull
+    @JoinColumn(name = "userId")
     private Long userId;
 
     @Column (name = "duration")
@@ -30,13 +27,6 @@ public class PlaylistEntity {
     @EqualsAndHashCode.Exclude
     private Double duration;
 
-    @ManyToMany(fetch = FetchType.EAGER,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            })
-    @JoinTable(name = "playlist_songs",
-            joinColumns = { @JoinColumn(name = "playlist_id") },
-            inverseJoinColumns = { @JoinColumn(name = "song_id") })
+    @OneToMany(mappedBy = "playlist")
     private List<SongEntity> songs;
 }

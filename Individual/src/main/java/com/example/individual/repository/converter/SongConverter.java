@@ -1,12 +1,12 @@
-package com.example.individual.business.converter;
+package com.example.individual.repository.converter;
 
 import com.example.individual.domain.Song;
 import com.example.individual.repository.entity.SongEntity;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public final class SongConverter {
-    public static Song convertToSong(SongEntity song) {
+public class SongConverter {
+    public Song ConvertToSong(SongEntity song) {
         return Song.builder()
                 .id(song.getId())
                 .songUri(song.getSongUri())
@@ -16,7 +16,7 @@ public final class SongConverter {
                 .build();
     }
 
-    public static SongEntity convertToSongEntity(Song song) {
+    public SongEntity ConvertToSongEntity(Song song) {
         return SongEntity.builder()
                 .id(song.getId())
                 .songUri(song.getSongUri())

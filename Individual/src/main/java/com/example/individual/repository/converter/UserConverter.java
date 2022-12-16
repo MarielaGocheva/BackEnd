@@ -1,32 +1,32 @@
-package com.example.individual.business.converter;
+package com.example.individual.repository.converter;
 
 import com.example.individual.domain.User;
-import com.example.individual.domain.enums.Role;
 import com.example.individual.repository.entity.UserEntity;
+import lombok.AllArgsConstructor;
 
-public final class UserConverter {
-    public UserConverter(){
-
-    }
-    public static User convertToUser(UserEntity user) {
+@AllArgsConstructor
+public class UserConverter {
+    public User ConvertToUser(UserEntity user) {
         return User.builder()
                 .id(user.getId())
                 .fName(user.getFName())
                 .lName(user.getLName())
                 .email(user.getEmail())
-                .role(Role.valueOf(user.getRole()))
-                .password(user.getPassword())
+                .role(user.getRole())
+                .salt(user.getSalt())
+                .encryptedPass((user.getEncryptedPass()))
                 .build();
     }
 
-    public static UserEntity convertToUserEntity(User user) {
+    public UserEntity ConvertToUserEntity(User user) {
         return UserEntity.builder()
                 .id(user.getId())
                 .fName(user.getFName())
                 .lName(user.getLName())
                 .email(user.getEmail())
-                .role(user.getRole().toString())
-                .password(user.getPassword())
+                .role(user.getRole())
+                .salt(user.getSalt())
+                .encryptedPass((user.getEncryptedPass()))
                 .build();
     }
 }
