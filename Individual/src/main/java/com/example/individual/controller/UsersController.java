@@ -21,11 +21,11 @@ public class UsersController {
 
     @GetMapping("{id}")
     public ResponseEntity<User> getUser(@PathVariable(value = "id") final long id) {
-        final Optional<User> userOptional = getUserUseCase.getUser(id);
-        if (userOptional.isEmpty()) {
+        final User user = getUserUseCase.getUser(id);
+        if (user.equals(null)) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok().body(userOptional.get());
+        return ResponseEntity.ok().body(user);
     }
 
     @GetMapping

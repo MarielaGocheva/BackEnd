@@ -1,25 +1,32 @@
 package com.example.individual.repository.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.sun.istack.NotNull;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "playlist")
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class PlaylistEntity {
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull
+    @JoinColumn(name = "userId")
     private Long userId;
-    private int duration;
-    @OneToMany
+
+    @Column (name = "duration")
+//    @Length(max = 10)
+    @EqualsAndHashCode.Exclude
+    private Double duration;
+
+    @OneToMany(mappedBy = "playlist")
     private List<SongEntity> songs;
 }
