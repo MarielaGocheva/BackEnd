@@ -40,6 +40,14 @@ public class DatabaseDataInitializer {
 //        SongEntity song = SongEntity.builder().songUri("uri").artist("Extreme").imageUrl("img").build();
 //        songs.add(song);
 
+
+//        SongEntity song = SongEntity.builder().songUri("https://open.spotify.com/track/30DnQCN64v8xBpGZpLgb6l?si=d339188f1289402d").artist("Sia").imageUrl("img").build();
+//        songRepository.save(song);
+//        PlaylistEntity playlist = playlistRepository.findById(5L).get();
+//        PlaylistSongEntity pl = PlaylistSongEntity.builder().playlist(playlist).song(song).build();
+//        playlistSongRepository.save(pl);
+
+
 //            System.out.println(playlistSongRepository.findSongsByPlaylistId(4L).stream().map(song -> song.getId()));
 //        PlaylistEntity pl = PlaylistEntity.builder().title("Top 10 Christmas Songs").userId(2L).duration(120D).build();
 //        playlistRepository.save(pl);

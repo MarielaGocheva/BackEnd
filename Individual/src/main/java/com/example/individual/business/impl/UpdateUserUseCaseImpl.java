@@ -5,6 +5,7 @@ import com.example.individual.business.UpdateUserUseCase;
 import com.example.individual.business.converter.UserConverter;
 import com.example.individual.domain.UpdateUserRequest;
 import com.example.individual.domain.User;
+import com.example.individual.domain.enums.Role;
 import com.example.individual.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,10 +27,10 @@ public class UpdateUserUseCaseImpl implements UpdateUserUseCase {
     }
 
     private void updateFields(UpdateUserRequest request, User user) {
-        user.setRole(request.getRole());
-        user.setEmail(request.getEmail());
-        user.setFName(request.getFName());
-        user.setLName(request.getLName());
+//        user.setRole(Role.valueOf(request.getRole()));
+//        user.setEmail(request.getEmail());
+//        user.setFName(request.getFName());
+//        user.setLName(request.getLName());
 
         userRepository.save(UserConverter.convertToUserEntity(user));
     }

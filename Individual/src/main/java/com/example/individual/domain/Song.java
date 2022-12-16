@@ -1,14 +1,11 @@
 package com.example.individual.domain;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+
 @Builder
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
 public class Song {
     private Long id;

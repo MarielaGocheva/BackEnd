@@ -1,6 +1,7 @@
 package com.example.individual.business.converter;
 
 import com.example.individual.domain.User;
+import com.example.individual.domain.enums.Role;
 import com.example.individual.repository.entity.UserEntity;
 
 public final class UserConverter {
@@ -13,7 +14,7 @@ public final class UserConverter {
                 .fName(user.getFName())
                 .lName(user.getLName())
                 .email(user.getEmail())
-                .role(user.getRole())
+                .role(Role.valueOf(user.getRole()))
                 .password(user.getPassword())
                 .build();
     }
@@ -24,7 +25,7 @@ public final class UserConverter {
                 .fName(user.getFName())
                 .lName(user.getLName())
                 .email(user.getEmail())
-                .role(user.getRole())
+                .role(user.getRole().toString())
                 .password(user.getPassword())
                 .build();
     }

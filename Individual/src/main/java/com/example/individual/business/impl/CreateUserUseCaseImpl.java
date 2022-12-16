@@ -7,6 +7,7 @@ import com.example.individual.business.exceptions.UserAlreadyExists;
 import com.example.individual.domain.CreateUserRequest;
 import com.example.individual.domain.CreateUserResponse;
 import com.example.individual.domain.User;
+import com.example.individual.domain.enums.Role;
 import com.example.individual.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +40,7 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
                 .fName(request.getFName())
                 .lName(request.getLName())
                 .email(request.getEmail())
-                .role(request.getRole())
+                .role(Role.valueOf(request.getRole()))
                 .password(request.getPassword())
                 .build();
         return UserConverter.convertToUser(userRepository.save(UserConverter.convertToUserEntity(newUser)));

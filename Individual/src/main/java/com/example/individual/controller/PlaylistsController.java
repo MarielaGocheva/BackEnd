@@ -5,13 +5,21 @@ import com.example.individual.domain.*;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.HtmlUtils;
+
+import javax.websocket.OnOpen;
+import javax.websocket.Session;
+import javax.websocket.server.ServerEndpoint;
 
 @RestController
 @RequestMapping("/playlists")
 @AllArgsConstructor
 @CrossOrigin("http://localhost:3000")
+@ServerEndpoint(value = "/users/update")
 public class PlaylistsController {
     private final GetAllPlaylistsByUserIdUseCase getAllPlaylistsByUserIdUseCase;
 
@@ -30,7 +38,7 @@ public class PlaylistsController {
     }
 
     @PostMapping
-    public ResponseEntity<CreatePlaylistResponse> createPlaylist(@RequestBody CreatePlaylistRequest request) {
+    public ResponseEntity<CreatePlaylistResponse> createPlaylist(@RequestBody CreatePlaylistRequest request) throws Exception {
 //        CreatePlaylistRequest request = CreatePlaylistRequest.builder().userId(Long.parseLong(userId)).name(name).build();
         CreatePlaylistResponse response = createPlaylistUseCase.createPlaylist(request);
         return ResponseEntity.ok(response);
@@ -49,5 +57,10 @@ public class PlaylistsController {
         return ResponseEntity.ok(response);
     }
 
-
+    @MessageMapping("/update")
+    @SendTo("/topic/update")
+    public ArtistUpdate update(WsMessage message) throws Exception {
+        Thread.sleep(1000); // simulated delay
+        return new ArtistUpdate("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
+    }
 }

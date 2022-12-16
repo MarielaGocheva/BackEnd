@@ -30,7 +30,7 @@ public class PlaylistEntity {
     @EqualsAndHashCode.Exclude
     private Double duration;
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
