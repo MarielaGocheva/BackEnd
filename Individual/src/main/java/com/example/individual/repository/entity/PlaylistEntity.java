@@ -30,6 +30,9 @@ public class PlaylistEntity {
     @EqualsAndHashCode.Exclude
     private Double duration;
 
+    @Column (name = "image_url")
+    private String imageUrl;
+
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
                     CascadeType.PERSIST,

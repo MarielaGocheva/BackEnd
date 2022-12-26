@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetPlaylistSongsRequest {
-    private Long playlistId;
+public class GetPlaylistsByTitleAndUserIdRequest {
+    private String title;
+    private Long userId;
 }

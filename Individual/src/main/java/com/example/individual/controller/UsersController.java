@@ -4,6 +4,7 @@ import com.example.individual.business.*;
 import com.example.individual.configuration.security.isAuthenticated.IsAuthenticated;
 import com.example.individual.domain.*;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +14,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.annotation.security.RolesAllowed;
+import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
-@AllArgsConstructor
+@CrossOrigin("http://localhost:3000")
+@RequiredArgsConstructor
 public class UsersController {
 
     private final CreateUserUseCase createUserUseCase;
@@ -27,7 +30,7 @@ public class UsersController {
     private final GetArtistPageInfoUseCase getArtistPageInfoUseCase;
 
     @GetMapping("{id}")
-    public ResponseEntity<GetUserResponse> getUser(@PathVariable(value = "id") long id,
+    public ResponseEntity<GetUserResponse> getUser(@PathVariable(value = "id") Long id,
                                                    @RequestBody GetUserRequest request) {
         request.setId(id);
         GetUserResponse response = getUserUseCase.getUser(request);
@@ -45,14 +48,13 @@ public class UsersController {
     }
 
     @PostMapping()
-    public ResponseEntity<CreateUserResponse> createUser(@PathVariable("id") long id, @RequestBody CreateUserRequest request) {
-        request.setId(id);
+    public ResponseEntity<CreateUserResponse> createUser(@RequestBody @Valid CreateUserRequest request) {
         CreateUserResponse response = createUserUseCase.createUser(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Void> updateUser(@PathVariable("id") long id,
+    public ResponseEntity<Void> updateUser(@PathVariable("id") Long id,
                                               @RequestBody  UpdateUserRequest request) {
 //        request.setId(id);
         updateUserUseCase.updateUser(request);
@@ -61,7 +63,7 @@ public class UsersController {
 
     @IsAuthenticated
     @GetMapping("/artist/{id}")
-    public ResponseEntity<GetArtistPageInfoResponse> findArtist (@PathVariable (value = "id") long id) {
+    public ResponseEntity<GetArtistPageInfoResponse> findArtist (@PathVariable (value = "id") Long id) {
         GetArtistPageInfoRequest request = GetArtistPageInfoRequest.builder().id(id).build();
         GetArtistPageInfoResponse response = getArtistPageInfoUseCase.findArtist(request);
         return ResponseEntity.ok(response);

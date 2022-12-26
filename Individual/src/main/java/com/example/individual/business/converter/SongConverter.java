@@ -11,6 +11,7 @@ public final class SongConverter {
                 .id(song.getId())
                 .songUri(song.getSongUri())
                 .artist(song.getArtist())
+                .title(song.getTitle())
                 .duration(song.getDuration())
                 .imageUrl(song.getImageUrl())
                 .build();
@@ -21,6 +22,7 @@ public final class SongConverter {
                 .id(song.getId())
                 .songUri(song.getSongUri())
                 .artist(song.getArtist())
+                .title(song.getTitle())
                 .duration(song.getDuration())
                 .imageUrl(song.getImageUrl())
                 .build();

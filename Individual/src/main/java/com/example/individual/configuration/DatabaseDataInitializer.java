@@ -40,6 +40,8 @@ public class DatabaseDataInitializer {
 //        SongEntity song = SongEntity.builder().songUri("uri").artist("Extreme").imageUrl("img").build();
 //        songs.add(song);
 
+//        PlaylistEntity pl = playlistRepository.findByTitleAndUserId("Gym Paylist", 2L);
+//        System.out.println("playlist id: " + pl.getPlaylistId());
 
 //        SongEntity song = SongEntity.builder().songUri("https://open.spotify.com/track/30DnQCN64v8xBpGZpLgb6l?si=d339188f1289402d").artist("Sia").imageUrl("img").build();
 //        songRepository.save(song);

@@ -10,6 +10,7 @@ import java.util.Optional;
 public interface PlaylistRepository extends JpaRepository<PlaylistEntity, Long> {
     boolean existsById(Long id);
     PlaylistEntity findByPlaylistId(Long id);
+    PlaylistEntity findByTitleAndUserId(String title, Long id);
 
 //    List<PlaylistEntity> save(PlaylistEntity playlist);
 

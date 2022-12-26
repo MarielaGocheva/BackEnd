@@ -42,12 +42,11 @@ public class AddSongUseCaseImpl implements AddSongUseCase {
 
     private SongEntity addNewSong(AddSongRequest request) {
         try {
-            SongEntity newSong = SongEntity.builder().songUri(request.getSongUri()).build();
+            SongEntity newSong = SongEntity.builder().songUri(request.getSongUri()).artist(request.getArtist()).imageUrl(request.getImg()).title(request.getTitle()).build();
             songRepository.save(newSong);
             PlaylistEntity playlist = playlistRepository.findById(request.getPlaylistId()).get();
             PlaylistSongEntity pl = PlaylistSongEntity.builder().playlist(playlist).song(newSong).build();
             playlistSongRepository.save(pl);
-//            playlistSongRepository.save(PlaylistSongEntity.builder().playlist(playlistRepository.findByPlaylistId(request.getPlaylistId())).build());
             return newSong;
         }
         catch (Exception e){

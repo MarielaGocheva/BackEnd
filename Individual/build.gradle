@@ -50,3 +50,21 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+jar {
+    manifest {
+        attributes "Main-Class": "com.example.individual.IndividualApplication"
+    }
+
+//    from {
+//        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+//    }
+}
+
+//jar {
+//    manifest {
+//        attributes(
+//                'Main-Class': 'com.example.individual.IndividualApplication'
+//        )
+//    }
+//}

@@ -27,6 +27,9 @@ public class SongEntity {
     @Column(name = "artist")
     private String artist;
 
+    @Column (name = "title")
+    private String title;
+
     @Column(name = "duration")
     private Double duration;
 

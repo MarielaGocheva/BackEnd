@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AddSongRequest {
-    private long playlistId;
+    private Long playlistId;
     private String songUri;
+    private String artist;
+    private String title;
+    private String img;
 }

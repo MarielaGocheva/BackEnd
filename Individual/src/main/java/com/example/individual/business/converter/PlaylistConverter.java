@@ -25,6 +25,7 @@ public final class PlaylistConverter {
                 .userId(playlist.getUserId())
                 .title(playlist.getTitle())
                 .duration(playlist.getDuration())
+                .imageUrl(playlist.getImageUrl())
                 .songs(convertedSongs)
                 .build();
     }
@@ -39,7 +40,8 @@ public final class PlaylistConverter {
                 .userId(playlist.getUserId())
                 .title(playlist.getTitle())
                 .duration(playlist.getDuration())
-//                .songs(convertedSongs)
+                .imageUrl(playlist.getImageUrl())
+                .songs(convertedSongs)
                 .build();
     }
 }

@@ -24,14 +24,14 @@ class CreateUserUseCaseImplTest {
     @Test
     void createCountry_DoesntExistByCode() {
 
-        when(userRepositoryMock.existsById(request.getId()))
-                .thenReturn(false);
-
-
-        if (userRepositoryMock.existsById(request.getId())) {
-            //Change exception type
-            throw new RuntimeException();
-        }
+//        when(userRepositoryMock.existsById(request.getId()))
+//                .thenReturn(false);
+//
+//
+//        if (userRepositoryMock.existsById(request.getId())) {
+//            //Change exception type
+//            throw new RuntimeException();
+//        }
 
         UserEntity newUser =
                 UserEntity.builder()

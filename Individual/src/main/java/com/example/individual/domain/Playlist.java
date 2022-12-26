@@ -13,5 +13,6 @@ public class Playlist {
     private Long userId;
     private String title;
     private Double duration;
+    private String imageUrl;
     private List<Song> songs;
 }
