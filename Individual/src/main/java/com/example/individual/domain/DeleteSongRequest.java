@@ -9,11 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateUserRequest {
-    private Long id;
-    private String fName;
-    private String lName;
-    private String email;
-    private String role;
-    private String password;
+public class DeleteSongRequest {
+    private Long playlistId;
+    private String songUri;
 }

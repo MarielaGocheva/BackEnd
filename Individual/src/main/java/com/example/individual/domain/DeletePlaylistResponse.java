@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class SwitchSongPositionRequest {
-    private Long playlistId;
-    private int position;
+@NoArgsConstructor
+public class DeletePlaylistResponse {
+    private Boolean deleted;
 }

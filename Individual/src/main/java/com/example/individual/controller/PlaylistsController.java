@@ -29,6 +29,7 @@ public class PlaylistsController {
     private final GetPlaylistSongsUseCase getPlaylistSongsUseCase;
     private final CreatePlaylistUseCase createPlaylistUseCase;
     private final GetPlaylistsByTitleAndUserIdUseCase getPlaylistsByTitleAndUserIdUseCase;
+    private final DeletePlaylistUseCase deletePlaylistUseCase;
 
     @GetMapping("{userId}")
     public ResponseEntity<GetAllPlaylistsByUserIdResponse> getAllPlaylistsByUserId(@PathVariable (value = "userId") long userId) {
@@ -68,6 +69,12 @@ public class PlaylistsController {
         GetPlaylistsByTitleAndUserIdRequest request = GetPlaylistsByTitleAndUserIdRequest.builder().title(title).userId(userId).build();
         GetPlaylistsByTitleAndUserIdResponse response = getPlaylistsByTitleAndUserIdUseCase.getPlaylists(request);
         return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<DeletePlaylistResponse> deletePlaylist(@RequestBody @Valid DeletePlaylistRequest request){
+        DeletePlaylistResponse response = deletePlaylistUseCase.deletePlaylist(request);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @MessageMapping("/update")

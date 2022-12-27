@@ -11,11 +11,7 @@ public interface PlaylistRepository extends JpaRepository<PlaylistEntity, Long> 
     boolean existsById(Long id);
     PlaylistEntity findByPlaylistId(Long id);
     PlaylistEntity findByTitleAndUserId(String title, Long id);
-
-//    List<PlaylistEntity> save(PlaylistEntity playlist);
-
-//    int count();
+    void deletePlaylistEntityByPlaylistId(Long playlistId);
     List<PlaylistEntity> findAllByUserId(long id);
-//    List<Playlist> findAll();
-    List<SongEntity> findSongsByPlaylistId(long playlistId);
+//    List<SongEntity> findSongsByPlaylistId(long playlistId);
 }

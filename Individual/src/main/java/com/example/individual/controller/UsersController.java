@@ -30,9 +30,8 @@ public class UsersController {
     private final GetArtistPageInfoUseCase getArtistPageInfoUseCase;
 
     @GetMapping("{id}")
-    public ResponseEntity<GetUserResponse> getUser(@PathVariable(value = "id") Long id,
-                                                   @RequestBody GetUserRequest request) {
-        request.setId(id);
+    public ResponseEntity<GetUserResponse> getUser(@PathVariable (value="id") Long id) {
+        GetUserRequest request = GetUserRequest.builder().id(id).build();
         GetUserResponse response = getUserUseCase.getUser(request);
         if (response.equals(null)) {
             return ResponseEntity.notFound().build();
@@ -58,7 +57,7 @@ public class UsersController {
                                               @RequestBody  UpdateUserRequest request) {
 //        request.setId(id);
         updateUserUseCase.updateUser(request);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @IsAuthenticated
