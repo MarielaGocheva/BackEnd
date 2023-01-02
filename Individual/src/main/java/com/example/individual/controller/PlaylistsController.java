@@ -71,8 +71,9 @@ public class PlaylistsController {
         return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping
-    public ResponseEntity<DeletePlaylistResponse> deletePlaylist(@RequestBody @Valid DeletePlaylistRequest request){
+    @DeleteMapping("{playlistId}")
+    public ResponseEntity<DeletePlaylistResponse> deletePlaylist(@PathVariable (value="playlistId") Long playlistId){
+        DeletePlaylistRequest request = DeletePlaylistRequest.builder().playlistId(playlistId).build();
         DeletePlaylistResponse response = deletePlaylistUseCase.deletePlaylist(request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
