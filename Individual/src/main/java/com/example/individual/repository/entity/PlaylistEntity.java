@@ -1,6 +1,10 @@
 package com.example.individual.repository.entity;
 
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
@@ -42,4 +46,21 @@ public class PlaylistEntity {
             joinColumns = { @JoinColumn(name = "playlist_id") },
             inverseJoinColumns = { @JoinColumn(name = "song_id") })
     private List<SongEntity> songs;
+
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+//    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinTable(name = "playlist_genres",
+            joinColumns = { @JoinColumn(name = "playlist_id") },
+            inverseJoinColumns = { @JoinColumn(name = "genre_id") })
+    private List<GenreEntity> genres;
+
+
+
+
+//    @OneToMany(mappedBy="playlist", fetch=FetchType.EAGER)
+//    @Fetch(value = FetchMode.SUBSELECT)
 }

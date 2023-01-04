@@ -15,4 +15,5 @@ public class Playlist {
     private Double duration;
     private String imageUrl;
     private List<Song> songs;
+    private List<Genre> genres;
 }

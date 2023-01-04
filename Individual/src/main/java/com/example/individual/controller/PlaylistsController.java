@@ -3,18 +3,14 @@ package com.example.individual.controller;
 import com.example.individual.business.*;
 import com.example.individual.domain.*;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.validation.Valid;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 @RestController
@@ -30,6 +26,8 @@ public class PlaylistsController {
     private final CreatePlaylistUseCase createPlaylistUseCase;
     private final GetPlaylistsByTitleAndUserIdUseCase getPlaylistsByTitleAndUserIdUseCase;
     private final DeletePlaylistUseCase deletePlaylistUseCase;
+    private final GetGenresUseCase getGenresUseCase;
+    private final SearchUseCase searchUseCase;
 
     @GetMapping("{userId}")
     public ResponseEntity<GetAllPlaylistsByUserIdResponse> getAllPlaylistsByUserId(@PathVariable (value = "userId") long userId) {
@@ -38,7 +36,7 @@ public class PlaylistsController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping
+    @PostMapping(consumes = {"application/json"})
     public ResponseEntity<CreatePlaylistResponse> createPlaylist(@RequestBody @Valid CreatePlaylistRequest request) throws Exception {
 //        CreatePlaylistRequest request = CreatePlaylistRequest.builder().userId(Long.parseLong(userId)).name(name).build();
         CreatePlaylistResponse response = createPlaylistUseCase.createPlaylist(request);
@@ -75,6 +73,19 @@ public class PlaylistsController {
     public ResponseEntity<DeletePlaylistResponse> deletePlaylist(@PathVariable (value="playlistId") Long playlistId){
         DeletePlaylistRequest request = DeletePlaylistRequest.builder().playlistId(playlistId).build();
         DeletePlaylistResponse response = deletePlaylistUseCase.deletePlaylist(request);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @GetMapping("/genres")
+    public ResponseEntity<GetGenresResponse> getGenres(){
+        GetGenresResponse response = getGenresUseCase.getGenres();
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/search/{searchItem}")
+    public ResponseEntity<GetSearchResultsResponse> getResults(@PathVariable (value = "searchItem") String searchItem){
+        GetSearchResultsRequest request = GetSearchResultsRequest.builder().searchItem(searchItem).build();
+        GetSearchResultsResponse response = searchUseCase.getResults(request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
