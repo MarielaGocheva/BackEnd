@@ -1,18 +1,13 @@
 package com.example.individual.configuration;
 
 import com.example.individual.business.GetPlaylistGenresUseCase;
-import com.example.individual.business.converter.GenreConverter;
-import com.example.individual.business.converter.PlaylistConverter;
-import com.example.individual.domain.*;
+import com.example.individual.domain.Song;
 import com.example.individual.repository.*;
-import com.example.individual.repository.entity.*;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Component

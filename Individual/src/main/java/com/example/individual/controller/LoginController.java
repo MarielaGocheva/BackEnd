@@ -6,13 +6,10 @@ import com.example.individual.business.exceptions.EmailNotFoundException;
 import com.example.individual.business.exceptions.PasswordIncorrectException;
 import com.example.individual.domain.LoginRequest;
 import com.example.individual.domain.LoginResponse;
-import com.example.individual.domain.TokenResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.awt.*;
 
 @RestController
 @RequestMapping("/login")

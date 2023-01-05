@@ -1,6 +1,5 @@
 package com.example.individual.repository.entity;
 
-import com.example.individual.domain.Genre;
 import lombok.*;
 
 import javax.persistence.*;

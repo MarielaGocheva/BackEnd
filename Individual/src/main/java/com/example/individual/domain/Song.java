@@ -1,7 +1,9 @@
 package com.example.individual.domain;
 
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 
 
 @Builder

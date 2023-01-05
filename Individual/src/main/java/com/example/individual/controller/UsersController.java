@@ -3,19 +3,12 @@ package com.example.individual.controller;
 import com.example.individual.business.*;
 import com.example.individual.configuration.security.isAuthenticated.IsAuthenticated;
 import com.example.individual.domain.*;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.HtmlUtils;
 
-import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -33,7 +26,7 @@ public class UsersController {
     public ResponseEntity<GetUserResponse> getUser(@PathVariable (value="id") Long id) {
         GetUserRequest request = GetUserRequest.builder().id(id).build();
         GetUserResponse response = getUserUseCase.getUser(request);
-        if (response.equals(null)) {
+        if (response == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(response);

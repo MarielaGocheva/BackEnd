@@ -2,10 +2,11 @@ package com.example.individual.business.converter;
 
 import com.example.individual.domain.Song;
 import com.example.individual.repository.entity.SongEntity;
-import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
 public final class SongConverter {
+    private SongConverter(){
+
+    }
     public static Song convertToSong(SongEntity song) {
         return Song.builder()
                 .id(song.getId())

@@ -11,7 +11,6 @@ import com.example.individual.domain.User;
 import com.example.individual.repository.PlaylistRepository;
 import com.example.individual.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class GetArtistPageInfoUseCaseImpl implements GetArtistPageInfoUseCase {
     private PlaylistRepository playlistRepository;
     @Override
     public GetArtistPageInfoResponse findArtist(GetArtistPageInfoRequest request) {
-        if(!request.getId().equals(null)){
+        if(request.getId() != null){
             User user = UserConverter.convertToUser(userRepository.findUserById(request.getId()));
             String img = "shorturl.at/cmAPV";
             List<Playlist> playlists = playlistRepository.findAllByUserId(request.getId()).stream().map(playlistEntity -> PlaylistConverter.convertToPlaylist(playlistEntity)).toList();

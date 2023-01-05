@@ -1,6 +1,7 @@
 package com.example.individual.business.impl;
 
 import lombok.AllArgsConstructor;
+
 import java.util.Arrays;
 
 @AllArgsConstructor

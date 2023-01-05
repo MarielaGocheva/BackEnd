@@ -7,13 +7,10 @@ import com.example.individual.domain.*;
 import com.example.individual.repository.GenreRepository;
 import com.example.individual.repository.PlaylistGenresRepository;
 import com.example.individual.repository.PlaylistRepository;
-import com.example.individual.repository.entity.*;
+import com.example.individual.repository.entity.PlaylistGenreEntity;
 import lombok.AllArgsConstructor;
-import org.hibernate.jpa.QueryHints;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

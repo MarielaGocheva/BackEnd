@@ -6,13 +6,13 @@ import com.example.individual.domain.Song;
 import com.example.individual.repository.entity.GenreEntity;
 import com.example.individual.repository.entity.PlaylistEntity;
 import com.example.individual.repository.entity.SongEntity;
-import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
-
-@AllArgsConstructor
 public final class PlaylistConverter {
+    private PlaylistConverter(){
+
+    }
     public static Playlist convertToPlaylist(PlaylistEntity playlist) {
         List<Song> convertedSongs = new ArrayList<>();
         for (SongEntity song : playlist.getSongs())

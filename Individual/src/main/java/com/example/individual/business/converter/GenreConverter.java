@@ -2,10 +2,11 @@ package com.example.individual.business.converter;
 
 import com.example.individual.domain.Genre;
 import com.example.individual.repository.entity.GenreEntity;
-import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
 public final class GenreConverter {
+    private GenreConverter() {
+
+    }
     public static Genre convertToGenre(GenreEntity genre) {
         return Genre.builder()
                 .id(genre.getId())

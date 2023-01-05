@@ -2,12 +2,10 @@ package com.example.individual.business.impl;
 
 import com.example.individual.business.GetAllPlaylistsUseCase;
 import com.example.individual.business.converter.PlaylistConverter;
-import com.example.individual.domain.*;
+import com.example.individual.domain.GetAllPlaylistsResponse;
 import com.example.individual.repository.PlaylistRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @AllArgsConstructor

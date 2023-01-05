@@ -1,7 +1,8 @@
 package com.example.individual.business.impl;
 
 import com.example.individual.business.AddSongUseCase;
-import com.example.individual.domain.*;
+import com.example.individual.domain.AddSongRequest;
+import com.example.individual.domain.AddSongResponse;
 import com.example.individual.repository.PlaylistRepository;
 import com.example.individual.repository.PlaylistSongRepository;
 import com.example.individual.repository.SongRepository;

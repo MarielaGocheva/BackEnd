@@ -9,8 +9,6 @@ import com.example.individual.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @AllArgsConstructor
 public class GetUserUseCaseImpl implements GetUserUseCase {
