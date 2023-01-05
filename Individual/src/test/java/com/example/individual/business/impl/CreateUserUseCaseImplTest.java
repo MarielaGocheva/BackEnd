@@ -22,7 +22,7 @@ class CreateUserUseCaseImplTest {
     private CreateUserRequest request = mock(CreateUserRequest.class);
 
     @Test
-    void createCountry_DoesntExistByCode() {
+    void createUser_DoesntExistById() {
 
 //        when(userRepositoryMock.existsById(request.getId()))
 //                .thenReturn(false);

@@ -2,12 +2,8 @@ package com.example.individual.business.impl;
 
 import com.example.individual.business.GetGenresUseCase;
 import com.example.individual.business.converter.GenreConverter;
-import com.example.individual.business.converter.PlaylistConverter;
-import com.example.individual.business.converter.SongConverter;
 import com.example.individual.domain.*;
 import com.example.individual.repository.GenreRepository;
-import com.example.individual.repository.PlaylistGenresRepository;
-import com.example.individual.repository.entity.PlaylistEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

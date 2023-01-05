@@ -1,22 +1,18 @@
 package com.example.individual.configuration;
 
-import com.example.individual.domain.Playlist;
-import com.example.individual.domain.Song;
-import com.example.individual.domain.User;
-import com.example.individual.repository.PlaylistRepository;
-import com.example.individual.repository.PlaylistSongRepository;
-import com.example.individual.repository.SongRepository;
-import com.example.individual.repository.UserRepository;
-import com.example.individual.repository.entity.PlaylistEntity;
-import com.example.individual.repository.entity.PlaylistSongEntity;
-import com.example.individual.repository.entity.SongEntity;
-import com.example.individual.repository.entity.UserEntity;
+import com.example.individual.business.GetPlaylistGenresUseCase;
+import com.example.individual.business.converter.GenreConverter;
+import com.example.individual.business.converter.PlaylistConverter;
+import com.example.individual.domain.*;
+import com.example.individual.repository.*;
+import com.example.individual.repository.entity.*;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -27,18 +23,36 @@ public class DatabaseDataInitializer {
     private List<Song> songs;
     private UserRepository userRepository;
     private PlaylistSongRepository playlistSongRepository;
+    private GenreRepository genreRepository;
+    private PlaylistGenresRepository playlistGenresRepository;
+    private GetPlaylistGenresUseCase getPlaylistGenresUseCase;
 
 
     @EventListener(ApplicationReadyEvent.class)
     public void populateDatabaseInitialDummyData() {
 //        UserEntity user = UserEntity.builder().email("soto@gmail").fName("Sebastiaan").lName("Soto").role("DJ").password("123").build();
 //        userRepository.save(user);
-        List<SongEntity> songs = new ArrayList<>();
 //        SongEntity song = SongEntity.builder().songUri("uri").artist("Alter Bridge").imageUrl("img").build();
 //        SongEntity saved = songRepository.save(song);
 //        SongEntity saved = songRepository.findById(1L).orElse(new SongEntity());
 //        SongEntity song = SongEntity.builder().songUri("uri").artist("Extreme").imageUrl("img").build();
 //        songs.add(song);
+
+//        List<Song> songs = new ArrayList<>();
+//        List<String> genreIds = Arrays.asList("2,13,14,".split(","));
+//        List<Genre> genres = genreIds.stream().map(genre -> GenreConverter.convertToGenre(genreRepository.getReferenceById(Long.parseLong(genre)))).toList();
+//
+//        Playlist playlist = Playlist.builder().userId(2L).title("Party").songs(songs).genres(genres).duration(0D).build();
+//        Playlist savedPlaylist = PlaylistConverter.convertToPlaylist(playlistRepository.save(PlaylistConverter.convertToPlaylistEntity(playlist)));
+//        for (Genre genre : genres) {
+//            playlistGenresRepository.save(PlaylistGenreEntity.builder().genre(GenreConverter.convertToGenreEntity(genre)).playlist(PlaylistConverter.convertToPlaylistEntity(savedPlaylist)).build());
+//        }
+//        List<PlaylistGenreEntity> pl = playlistGenresRepository.findAllByPlaylistId(savedPlaylist.getId());
+//        System.out.println(savedPlaylist.getGenres());
+
+//        GetPlaylistGenresResponse res = getPlaylistGenresUseCase.getGenres(GetPlaylistGenresRequest.builder().playlistId(22L).build());
+//        System.out.println(res);
+
 
 //        PlaylistEntity pl = playlistRepository.findByTitleAndUserId("Gym Paylist", 2L);
 //        System.out.println("playlist id: " + pl.getPlaylistId());

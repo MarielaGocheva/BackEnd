@@ -28,6 +28,7 @@ public class PlaylistsController {
     private final DeletePlaylistUseCase deletePlaylistUseCase;
     private final GetGenresUseCase getGenresUseCase;
     private final SearchUseCase searchUseCase;
+    private final GetPlaylistGenresUseCase getPlaylistGenresUseCase;
 
     @GetMapping("{userId}")
     public ResponseEntity<GetAllPlaylistsByUserIdResponse> getAllPlaylistsByUserId(@PathVariable (value = "userId") long userId) {
@@ -87,6 +88,13 @@ public class PlaylistsController {
         GetSearchResultsRequest request = GetSearchResultsRequest.builder().searchItem(searchItem).build();
         GetSearchResultsResponse response = searchUseCase.getResults(request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @GetMapping("/genres/{playlistId}")
+    public ResponseEntity<GetPlaylistGenresResponse> getGenres(@PathVariable (value = "playlistId") Long id){
+        GetPlaylistGenresRequest request = GetPlaylistGenresRequest.builder().playlistId(id).build();
+        GetPlaylistGenresResponse response = getPlaylistGenresUseCase.getGenres(request);
+        return  ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @MessageMapping("/update")

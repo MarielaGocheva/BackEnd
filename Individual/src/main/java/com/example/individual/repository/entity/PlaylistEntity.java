@@ -1,12 +1,15 @@
 package com.example.individual.repository.entity;
 
+import com.sun.istack.NotNull;
 import lombok.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.*;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,22 +18,22 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Proxy(lazy = false)
 public class PlaylistEntity {
     @Id
     @Column(name = "playlist_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long playlistId;
 
+    @Length(max = 100)
     @Column(name = "title")
     private String title;
 
-//    @NotNull
-//    @OneToOne
+    @NotNull
     @JoinColumn(name = "user_id")
     private Long userId;
 
     @Column (name = "duration")
-//    @Length(max = 10)
     @EqualsAndHashCode.Exclude
     private Double duration;
 
@@ -45,22 +48,15 @@ public class PlaylistEntity {
     @JoinTable(name = "playlist_songs",
             joinColumns = { @JoinColumn(name = "playlist_id") },
             inverseJoinColumns = { @JoinColumn(name = "song_id") })
-    private List<SongEntity> songs;
+    private List<SongEntity> songs = new ArrayList<>();
 
-    @ManyToMany(
+    @OneToMany(
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
             })
-//    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(name = "playlist_genres",
             joinColumns = { @JoinColumn(name = "playlist_id") },
             inverseJoinColumns = { @JoinColumn(name = "genre_id") })
-    private List<GenreEntity> genres;
-
-
-
-
-//    @OneToMany(mappedBy="playlist", fetch=FetchType.EAGER)
-//    @Fetch(value = FetchMode.SUBSELECT)
+    private List<GenreEntity> genres = new ArrayList<>();
 }
