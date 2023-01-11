@@ -1,16 +1,21 @@
 package com.example.individual.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+
 public class ArtistUpdate {
-    private String content;
+    private Playlist playlist;
 
     public ArtistUpdate() {
     }
 
-    public ArtistUpdate(String content) {
-        this.content = content;
+    public ArtistUpdate(Playlist content) {
+        this.playlist = content;
     }
 
-    public String getContent() {
-        return content;
+    public Playlist getContent() {
+        return playlist;
     }
+
 }

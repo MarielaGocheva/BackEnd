@@ -2,13 +2,14 @@ package com.example.individual.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-@Data
 @Builder
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
-public class GetAllPlaylistsByUserIdRequest {
+public class RecentlyPlayed {
+    private Long id;
     private Long userId;
+    private Long playlistId;
+    private Long songId;
 }

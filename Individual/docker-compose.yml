@@ -1,0 +1,28 @@
+version: '3.9'
+services:
+  db:
+    image: mariadb:latest
+    container_name: database-container
+    environment:
+      MYSQL_DATABASE: testdatabase
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 0105
+      MYSQL_ROOT_PASSWORD: 0105
+    ports:
+      - "3306:3306"
+    restart: always
+  backend:
+    image: backend:latest
+    container_name: backend-container
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      MYSQL-HOST: db
+      PORT: 3306
+      USER: root
+      PASSWORD: 0105
+

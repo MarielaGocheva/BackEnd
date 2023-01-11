@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Proxy(lazy = false)
+//@Proxy(lazy = false)
 public class PlaylistEntity {
     @Id
     @Column(name = "playlist_id")
@@ -38,20 +38,14 @@ public class PlaylistEntity {
     private String imageUrl;
 
     @ManyToMany(fetch = FetchType.EAGER,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            })
+            cascade = CascadeType.ALL)
     @JoinTable(name = "playlist_songs",
             joinColumns = { @JoinColumn(name = "playlist_id") },
             inverseJoinColumns = { @JoinColumn(name = "song_id") })
     private List<SongEntity> songs = new ArrayList<>();
 
-    @OneToMany(
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            })
+    @OneToMany(cascade =
+            CascadeType.ALL)
     @JoinTable(name = "playlist_genres",
             joinColumns = { @JoinColumn(name = "playlist_id") },
             inverseJoinColumns = { @JoinColumn(name = "genre_id") })

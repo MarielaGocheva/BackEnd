@@ -9,4 +9,5 @@ public interface SongRepository extends JpaRepository<SongEntity, Long> {
 //    Boolean alreadyAdded(long playlistId, String songUri);
 //    List<SongEntity> findAllByPlaylistId(long id);
     SongEntity findBySongUri(String uri);
+    SongEntity findBySongId(Long songId);
 }

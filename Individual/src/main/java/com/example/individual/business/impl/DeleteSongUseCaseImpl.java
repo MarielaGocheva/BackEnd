@@ -19,16 +19,16 @@ public class DeleteSongUseCaseImpl implements DeleteSongUseCase {
 
     @Override
     public DeleteSongResponse deleteSong(DeleteSongRequest request){
-        if(request.getSongUri().isEmpty()){
+        if(request.getSongUri().isEmpty() || songRepository.findBySongUri(request.getSongUri()) == null){
             throw new SongDoesNotExist();
         }
-        if(request.getPlaylistId()==null){
+        if(request.getPlaylistId()==null || playlistSongRepository.existsByPlaylist(request.getPlaylistId())){
             throw new PlaylistDoesNotExist();
         }
 
         try{
             SongEntity song = songRepository.findBySongUri(request.getSongUri());
-            playlistSongRepository.deleteByPlaylistAndSong(request.getPlaylistId(), song.getId());
+            playlistSongRepository.deleteByPlaylistAndSong(request.getPlaylistId(), song.getSongId());
             songRepository.delete(song);
             return DeleteSongResponse.builder().deleted(true).build();
         }

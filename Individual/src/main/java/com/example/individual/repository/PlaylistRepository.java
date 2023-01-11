@@ -9,6 +9,7 @@ public interface PlaylistRepository extends JpaRepository<PlaylistEntity, Long> 
     boolean existsById(Long id);
     PlaylistEntity findByPlaylistId(Long id);
     PlaylistEntity findByTitleAndUserId(String title, Long id);
-    List<PlaylistEntity> findAllByUserId(long id);
+    List<PlaylistEntity> findAllByUserId(Long id);
     List<PlaylistEntity> findByTitleContainsIgnoreCase(String searchItem);
+    Boolean existsByTitleAndUserId(String title, Long userId);
 }

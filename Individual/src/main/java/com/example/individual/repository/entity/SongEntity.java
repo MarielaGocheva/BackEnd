@@ -19,7 +19,7 @@ public class SongEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "song_id")
-    private Long id;
+    private Long songId;
 
     @Column (name = "song_uri")
     private String songUri;

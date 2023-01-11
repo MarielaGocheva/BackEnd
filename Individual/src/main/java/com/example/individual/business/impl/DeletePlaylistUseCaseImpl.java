@@ -15,7 +15,7 @@ public class DeletePlaylistUseCaseImpl implements DeletePlaylistUseCase {
 
     @Override
     public DeletePlaylistResponse deletePlaylist(DeletePlaylistRequest request){
-        if(request.getPlaylistId()==null){
+        if(request.getPlaylistId()==null || !playlistRepository.existsById(request.getPlaylistId())){
             throw new PlaylistDoesNotExist();
         }
 

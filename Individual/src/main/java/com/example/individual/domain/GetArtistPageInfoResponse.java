@@ -10,7 +10,6 @@ import java.util.List;
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 public class GetArtistPageInfoResponse {
     private String fName;
     private String lName;

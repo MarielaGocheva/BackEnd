@@ -14,7 +14,7 @@ class SongConverterTest {
     @Test
     void shouldConvertAllSongEntitiesToDomain() {
         SongEntity songTobeConverted = SongEntity.builder()
-                .id(1L)
+                .songId(1L)
                 .songUri("###")
                 .duration(3D)
                 .artist("Alter Bridge")
@@ -62,7 +62,7 @@ class SongConverterTest {
                 .title("One Day Remains")
                 .build();
 
-        assertEquals(expected.getId(), actual.getId());
+        assertEquals(expected.getId(), actual.getSongId());
         assertEquals(expected.getSongUri(), actual.getSongUri());
         assertEquals(expected.getDuration(), actual.getDuration());
         assertEquals(expected.getArtist(), actual.getArtist());

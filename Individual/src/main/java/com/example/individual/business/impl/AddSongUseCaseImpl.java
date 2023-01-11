@@ -1,6 +1,7 @@
 package com.example.individual.business.impl;
 
 import com.example.individual.business.AddSongUseCase;
+import com.example.individual.business.exceptions.PlaylistDoesNotExist;
 import com.example.individual.domain.AddSongRequest;
 import com.example.individual.domain.AddSongResponse;
 import com.example.individual.repository.PlaylistRepository;
@@ -22,10 +23,7 @@ public class AddSongUseCaseImpl implements AddSongUseCase {
     @Override
     public AddSongResponse addSong(AddSongRequest request) {
         if (!playlistRepository.existsById(request.getPlaylistId())) {
-            //throw exception playlist doesn't exist
-            return AddSongResponse.builder()
-                    .added(false)
-                    .build();
+            throw new PlaylistDoesNotExist();
         } else {
             try {
                 SongEntity addedSong = addNewSong(request);
@@ -51,7 +49,6 @@ public class AddSongUseCaseImpl implements AddSongUseCase {
             return newSong;
         }
         catch (Exception e){
-            //CHANGE EXCEPTION
             throw new RuntimeException();
         }
     }

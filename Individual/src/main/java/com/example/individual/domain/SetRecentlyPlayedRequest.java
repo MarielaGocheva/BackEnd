@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class GetAllPlaylistsByUserIdRequest {
+public class SetRecentlyPlayedRequest {
     private Long userId;
+    private String songUri;
+    private String playlistTitle;
 }

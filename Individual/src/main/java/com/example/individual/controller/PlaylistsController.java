@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.HtmlUtils;
 
 import javax.validation.Valid;
 import javax.websocket.server.ServerEndpoint;
@@ -29,6 +28,10 @@ public class PlaylistsController {
     private final GetGenresUseCase getGenresUseCase;
     private final SearchUseCase searchUseCase;
     private final GetPlaylistGenresUseCase getPlaylistGenresUseCase;
+    private final GetPlaylistUseCase getPlaylistUseCase;
+    private final SetRecentlyPlayedUseCase setRecentlyPlayedUseCase;
+    private final GetRecentlyPlayedUseCase getRecentlyPlayedUseCase;
+    private final GetHistoryUseCase getHistoryUseCase;
 
     @GetMapping("{userId}")
     public ResponseEntity<GetAllPlaylistsByUserIdResponse> getAllPlaylistsByUserId(@PathVariable (value = "userId") long userId) {
@@ -97,10 +100,30 @@ public class PlaylistsController {
         return  ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    @PostMapping("/recentlyPlayed")
+    public ResponseEntity<SetRecentlyPlayedResponse> setRecentlyPlayed(@RequestBody @Valid SetRecentlyPlayedRequest request){
+        SetRecentlyPlayedResponse response = setRecentlyPlayedUseCase.setRecentlyPlayed(request);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @GetMapping("/recentlyPlayed/{userId}")
+    public ResponseEntity<GetRecentlyPlayedResponse> getRecentlyPlayed(@PathVariable (value = "userId") Long userId){
+        GetRecentlyPlayedRequest request = GetRecentlyPlayedRequest.builder().userId(userId).build();
+        GetRecentlyPlayedResponse response = getRecentlyPlayedUseCase.getRecentlyPlayed(request);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @GetMapping("/history/{userId}")
+    public ResponseEntity<GetHistoryResponse> getHistory(@PathVariable (value = "userId") Long userId){
+        GetHistoryRequest request = GetHistoryRequest.builder().userId(userId).build();
+        GetHistoryResponse response = getHistoryUseCase.getHistory(request);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
     @MessageMapping("/update")
     @SendTo("/topic/update")
     public ArtistUpdate update(WsMessage message) throws Exception {
         Thread.sleep(1000); // simulated delay
-        return new ArtistUpdate("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
+        return new ArtistUpdate(getPlaylistUseCase.getPlaylist(Long.parseLong(message.getName())));
     }
 }

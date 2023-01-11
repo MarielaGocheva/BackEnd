@@ -9,7 +9,7 @@ public final class SongConverter {
     }
     public static Song convertToSong(SongEntity song) {
         return Song.builder()
-                .id(song.getId())
+                .id(song.getSongId())
                 .songUri(song.getSongUri())
                 .artist(song.getArtist())
                 .title(song.getTitle())
@@ -20,7 +20,7 @@ public final class SongConverter {
 
     public static SongEntity convertToSongEntity(Song song) {
         return SongEntity.builder()
-                .id(song.getId())
+                .songId(song.getId())
                 .songUri(song.getSongUri())
                 .artist(song.getArtist())
                 .title(song.getTitle())
