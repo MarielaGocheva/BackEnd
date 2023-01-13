@@ -16,6 +16,7 @@ public class Playlist {
     private String title;
     private Double duration;
     private String imageUrl;
+    private Integer plays;
     private List<Song> songs;
     private List<Genre> genres;
 }

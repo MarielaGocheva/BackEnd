@@ -5,7 +5,7 @@ import com.example.individual.repository.entity.SongEntity;
 
 public final class SongConverter {
     private SongConverter(){
-
+        //Constructor
     }
     public static Song convertToSong(SongEntity song) {
         return Song.builder()
@@ -15,6 +15,7 @@ public final class SongConverter {
                 .title(song.getTitle())
                 .duration(song.getDuration())
                 .imageUrl(song.getImageUrl())
+                .plays(song.getPlays())
                 .build();
     }
 
@@ -26,6 +27,7 @@ public final class SongConverter {
                 .title(song.getTitle())
                 .duration(song.getDuration())
                 .imageUrl(song.getImageUrl())
+                .plays(song.getPlays())
                 .build();
     }
 }

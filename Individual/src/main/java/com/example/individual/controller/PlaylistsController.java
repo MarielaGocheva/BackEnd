@@ -1,6 +1,7 @@
 package com.example.individual.controller;
 
 import com.example.individual.business.*;
+import com.example.individual.business.exceptions.InsufficientNumberOfLikedPlaylists;
 import com.example.individual.domain.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.UnexpectedTypeException;
 import javax.validation.Valid;
 import javax.websocket.server.ServerEndpoint;
 
@@ -19,7 +21,6 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/users/update")
 public class PlaylistsController {
     private final GetAllPlaylistsByUserIdUseCase getAllPlaylistsByUserIdUseCase;
-
     private final GetAllPlaylistsUseCase getAllPlaylistsUseCase;
     private final GetPlaylistSongsUseCase getPlaylistSongsUseCase;
     private final CreatePlaylistUseCase createPlaylistUseCase;
@@ -32,6 +33,12 @@ public class PlaylistsController {
     private final SetRecentlyPlayedUseCase setRecentlyPlayedUseCase;
     private final GetRecentlyPlayedUseCase getRecentlyPlayedUseCase;
     private final GetHistoryUseCase getHistoryUseCase;
+    private final SetPlayedUseCase setPlayedUseCase;
+    private final GetMostPlayedPlaylistsUseCase getMostPlayedPlaylistsUseCase;
+    private final LikePlaylistUseCase likePlaylistUseCase;
+    private final DislikePlaylistUseCase dislikePlaylistUseCase;
+    private final CheckIfPlaylistIsLikedUseCase checkIfPlaylistIsLikedUseCase;
+    private final GetRecommendationsUseCase getRecommendationsUseCase;
 
     @GetMapping("{userId}")
     public ResponseEntity<GetAllPlaylistsByUserIdResponse> getAllPlaylistsByUserId(@PathVariable (value = "userId") long userId) {
@@ -118,6 +125,74 @@ public class PlaylistsController {
         GetHistoryRequest request = GetHistoryRequest.builder().userId(userId).build();
         GetHistoryResponse response = getHistoryUseCase.getHistory(request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @PutMapping("/played")
+    public ResponseEntity<Void> setPlayed(@RequestBody @Valid SetPlayedRequest request){
+//        try {
+            setPlayedUseCase.setPlayed(request);
+            return ResponseEntity.noContent().build();
+//        }
+//        catch (Exception e){
+//            throw new UnexpectedTypeException();
+//        }
+    }
+
+    @GetMapping("/mostPlayed")
+    public ResponseEntity<GetMostPlayedPlaylistsResponse> getMostPlayed(){
+        try {
+            GetMostPlayedPlaylistsResponse response = getMostPlayedPlaylistsUseCase.getMostPlayed();
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }
+        catch (Exception e){
+            throw new UnexpectedTypeException();
+        }
+    }
+
+    @PostMapping("/likePlaylist")
+    public ResponseEntity<Void> likePlaylist(@RequestBody @Valid LikePlaylistRequest request){
+        try{
+            likePlaylistUseCase.likePlaylist(request);
+            return ResponseEntity.noContent().build();
+        }
+        catch (Exception e){
+            throw new UnexpectedTypeException();
+        }
+    }
+
+    @DeleteMapping("/dislikePlaylist/{userId}/{playlistId}")
+    public ResponseEntity<Void> dislikePlaylist(@PathVariable (value = "userId") Long userId,
+                                                @PathVariable (value = "playlistId") Long playlistId){
+//        try {
+            DislikePlaylistRequest request = DislikePlaylistRequest.builder().userId(userId).playlistId(playlistId).build();
+            dislikePlaylistUseCase.dislikePlaylist(request);
+            return ResponseEntity.noContent().build();
+//        }
+//        catch (Exception e){
+//            throw new UnexpectedTypeException();
+//        }
+    }
+
+    @GetMapping("/isLiked/{userId}/{playlistId}")
+    public ResponseEntity<CheckIfPlaylistIsLikedResponse> checkIfLiked(@PathVariable (value = "userId") Long userId,
+                                                                       @PathVariable (value = "playlistId") Long playlistId){
+        CheckIfPlaylistIsLikedRequest request = CheckIfPlaylistIsLikedRequest.builder().userId(userId).playlistId(playlistId).build();
+        CheckIfPlaylistIsLikedResponse response = checkIfPlaylistIsLikedUseCase.checkIfLiked(request);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @GetMapping("/getRecommendation/{userId}")
+    public ResponseEntity<GetRecommendationsResponse> getRecommendations(@PathVariable (value = "userId") Long userId){
+        try {
+            GetRecommendationsRequest request = GetRecommendationsRequest.builder().userId(userId).build();
+            GetRecommendationsResponse response = getRecommendationsUseCase.getRecommendations(request);
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }
+        catch (InsufficientNumberOfLikedPlaylists e){
+            GetRecommendationsResponse response = GetRecommendationsResponse.builder().build();
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }
+
     }
 
     @MessageMapping("/update")

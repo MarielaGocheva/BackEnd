@@ -31,7 +31,10 @@ class SongControllerTest {
     private SwitchSongPositionUseCase switchSongPositionUseCase;
     @MockBean
     private DeleteSongUseCase deleteSongUseCase;
-
+    @MockBean
+    private SetSongPlayedUseCase setSongPlayedUseCase;
+    @MockBean
+    private GetMostPlayedSongsUseCase getMostPlayedSongsUseCase;
     @MockBean
     private AccessTokenDecoder accessTokenDecoder;
 

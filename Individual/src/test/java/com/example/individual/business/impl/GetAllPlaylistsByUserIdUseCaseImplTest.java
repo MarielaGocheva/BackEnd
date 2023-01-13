@@ -34,19 +34,20 @@ class GetAllPlaylistsByUserIdUseCaseImplTest {
 
     @Test
     void getAllPlaylistsByUserId_valid(){
-//        GetAllPlaylistsByUserIdRequest request = GetAllPlaylistsByUserIdRequest.builder().userId(1L).build();
-//        List<SongEntity> songs = new ArrayList<>();
-//        List<PlaylistEntity> userPlaylistEntities = new ArrayList<>();
-//        userPlaylistEntities.add(PlaylistEntity.builder().userId(1L).songs(songs).build());
-//        userPlaylistEntities.add(PlaylistEntity.builder().userId(1L).songs(songs).build());
-//        List<Playlist> userPlaylists = userPlaylistEntities.stream().map(PlaylistConverter::convertToPlaylist).toList();
-//        when(playlistRepositoryMock.findAllByUserId(request.getUserId())).thenReturn(userPlaylistEntities);
-//        GetAllPlaylistsByUserIdResponse actualResponse = getAllPlaylistsByUserIdUseCase.getPlaylists(request);
-//        GetAllPlaylistsByUserIdResponse expectedResponse = GetAllPlaylistsByUserIdResponse.builder().playlists(userPlaylists).build();
-//        int actual= actualResponse.getPlaylists().size();
-//        int expected = expectedResponse.getPlaylists().size();
-//        assertEquals(expected, actual);
-//        verify(playlistRepositoryMock).findAllByUserId(request.getUserId());
+        GetAllPlaylistsByUserIdRequest request = GetAllPlaylistsByUserIdRequest.builder().userId(1L).build();
+        List<SongEntity> songs = new ArrayList<>();
+        List<PlaylistEntity> userPlaylistEntities = new ArrayList<>();
+        userPlaylistEntities.add(PlaylistEntity.builder().userId(1L).songs(songs).build());
+        userPlaylistEntities.add(PlaylistEntity.builder().userId(1L).songs(songs).build());
+        List<Playlist> userPlaylists = userPlaylistEntities.stream().map(PlaylistConverter::convertToPlaylist).toList();
+        when(userRepositoryMock.existsById(request.getUserId())).thenReturn(true);
+        when(playlistRepositoryMock.findAllByUserId(request.getUserId())).thenReturn(userPlaylistEntities);
+        GetAllPlaylistsByUserIdResponse actualResponse = getAllPlaylistsByUserIdUseCase.getPlaylists(request);
+        GetAllPlaylistsByUserIdResponse expectedResponse = GetAllPlaylistsByUserIdResponse.builder().playlists(userPlaylists).build();
+        int actual= actualResponse.getPlaylists().size();
+        int expected = expectedResponse.getPlaylists().size();
+        assertEquals(expected, actual);
+        verify(playlistRepositoryMock).findAllByUserId(request.getUserId());
     }
 
     @Test
@@ -62,15 +63,14 @@ class GetAllPlaylistsByUserIdUseCaseImplTest {
         assertThrows(UserNotFoundException.class, () -> getAllPlaylistsByUserIdUseCase.getPlaylists(request));
     }
 
-//    @Test
-//    void getAllPlaylistsByUserId_userHasNoPlaylists(){
-//        GetAllPlaylistsByUserIdRequest request = GetAllPlaylistsByUserIdRequest.builder().userId(1L).build();
-//        when(playlistRepositoryMock.findAllByUserId(request.getUserId())).thenReturn(null);
-//        GetAllPlaylistsByUserIdResponse actualResponse = getAllPlaylistsByUserIdUseCase.getPlaylists(request);
-//        GetAllPlaylistsByUserIdResponse expectedResponse = GetAllPlaylistsByUserIdResponse.builder().playlists(null).build();
-//        int actual= actualResponse.getPlaylists().size();
-//        int expected = expectedResponse.getPlaylists().size();
-//        assertEquals(expected, actual);
-//        verify(playlistRepositoryMock).findAllByUserId(request.getUserId());
-//    }
+    @Test
+    void getAllPlaylistsByUserId_userHasNoPlaylists(){
+        GetAllPlaylistsByUserIdRequest request = GetAllPlaylistsByUserIdRequest.builder().userId(1L).build();
+        when(userRepositoryMock.existsById(request.getUserId())).thenReturn(true);
+        when(playlistRepositoryMock.findAllByUserId(request.getUserId())).thenReturn(new ArrayList<>());
+        GetAllPlaylistsByUserIdResponse actual = getAllPlaylistsByUserIdUseCase.getPlaylists(request);
+        GetAllPlaylistsByUserIdResponse expected = GetAllPlaylistsByUserIdResponse.builder().playlists(new ArrayList<>()).build();
+        assertEquals(expected.getPlaylists(), actual.getPlaylists());
+        verify(playlistRepositoryMock).findAllByUserId(request.getUserId());
+    }
 }

@@ -36,7 +36,6 @@ public class SongEntity {
     @Column(name = "image_url")
     private String imageUrl;
 
-//    @Column(name = "playlist_id")
-//    @JoinColumn(name = "playlist_id")
-//    private Long playlistId;
+    @Column (name = "plays")
+    private Integer plays;
 }

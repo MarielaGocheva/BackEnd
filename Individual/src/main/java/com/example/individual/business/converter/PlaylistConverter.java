@@ -30,6 +30,7 @@ public final class PlaylistConverter {
                 .title(playlist.getTitle())
                 .duration(playlist.getDuration())
                 .imageUrl(playlist.getImageUrl())
+                .plays(playlist.getPlays())
                 .songs(convertedSongs)
 //                .genres(convertedGenres)
                 .build();
@@ -51,6 +52,7 @@ public final class PlaylistConverter {
                 .title(playlist.getTitle())
                 .duration(playlist.getDuration())
                 .imageUrl(playlist.getImageUrl())
+                .plays(playlist.getPlays())
                 .songs(convertedSongs)
 //                .genres(convertedGenres)
                 .build();

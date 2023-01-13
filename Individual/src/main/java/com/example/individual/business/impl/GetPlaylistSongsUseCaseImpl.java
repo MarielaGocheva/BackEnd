@@ -2,6 +2,7 @@ package com.example.individual.business.impl;
 
 import com.example.individual.business.GetPlaylistSongsUseCase;
 import com.example.individual.business.converter.SongConverter;
+import com.example.individual.business.exceptions.PlaylistDoesNotExist;
 import com.example.individual.domain.GetPlaylistSongsRequest;
 import com.example.individual.domain.GetPlaylistSongsResponse;
 import com.example.individual.domain.Song;
@@ -20,16 +21,12 @@ public class GetPlaylistSongsUseCaseImpl implements GetPlaylistSongsUseCase {
     @Override
     public GetPlaylistSongsResponse getSongs(GetPlaylistSongsRequest request) {
         List<Song> songs;
-        if (request.getPlaylistId() >= 1) {
+        if (playlistRepository.existsById(request.getPlaylistId())) {
             PlaylistEntity pl = playlistRepository.findByPlaylistId(request.getPlaylistId());
-            songs = pl.getSongs().stream().map(song -> SongConverter.convertToSong(song)).toList();
+            songs = pl.getSongs().stream().map(SongConverter::convertToSong).toList();
         } else {
-            songs = null;
+            throw new PlaylistDoesNotExist();
         }
-
-        final GetPlaylistSongsResponse response = new GetPlaylistSongsResponse();
-        response.setSongs(songs);
-
-        return response;
+        return GetPlaylistSongsResponse.builder().songs(songs).build();
     }
 }

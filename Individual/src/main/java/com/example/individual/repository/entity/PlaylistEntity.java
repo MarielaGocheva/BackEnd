@@ -37,6 +37,9 @@ public class PlaylistEntity {
     @Column (name = "image_url")
     private String imageUrl;
 
+    @Column (name = "plays")
+    private Integer plays;
+
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     @JoinTable(name = "playlist_songs",

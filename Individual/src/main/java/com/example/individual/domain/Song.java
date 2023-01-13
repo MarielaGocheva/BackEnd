@@ -16,4 +16,5 @@ public class Song {
     private String title;
     private Double duration;
     private String imageUrl;
+    private Integer plays;
 }

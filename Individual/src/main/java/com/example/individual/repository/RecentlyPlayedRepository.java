@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface RecentlyPlayedRepository extends JpaRepository<RecentlyPlayedEntity, Long> {
     RecentlyPlayedEntity findTop1ByUserIdOrderByIdDesc(Long userId);
-    List<RecentlyPlayedEntity> findAllByUserIdOrderByIdDesc(Long userId);
+    List<RecentlyPlayedEntity> findDistinctByUserIdOrderByIdDesc(Long userId);
 }

@@ -24,9 +24,9 @@ public class SetRecentlyPlayedUseCaseImpl implements SetRecentlyPlayedUseCase {
     private UserRepository userRepository;
     @Override
     public SetRecentlyPlayedResponse setRecentlyPlayed(SetRecentlyPlayedRequest request) {
-        if(userRepository.existsById(request.getUserId())){
+        if(userRepository.existsById(request.getUserId()) && userRepository.existsById(request.getArtist())){
             if(request.getPlaylistTitle() != null && !request.getSongUri().equals("")){
-                Playlist pl = PlaylistConverter.convertToPlaylist(playlistRepository.findByTitleAndUserId(request.getPlaylistTitle(), request.getUserId()));
+                Playlist pl = PlaylistConverter.convertToPlaylist(playlistRepository.findByTitleAndUserId(request.getPlaylistTitle(), request.getArtist()));
                 Song song = SongConverter.convertToSong(songRepository.findBySongUri(request.getSongUri()));
                 RecentlyPlayed recentlyPlayed = RecentlyPlayed.builder().userId(request.getUserId()).songId(song.getId()).playlistId(pl.getId()).build();
                 recentlyPlayedRepository.save(RecentlyPlayedConverter.convertToRecentlyPlayedEntity(recentlyPlayed));

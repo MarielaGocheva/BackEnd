@@ -6,7 +6,7 @@ import com.example.individual.repository.entity.UserEntity;
 
 public final class UserConverter {
     public UserConverter(){
-
+        //Constructor
     }
     public static User convertToUser(UserEntity user) {
         return User.builder()

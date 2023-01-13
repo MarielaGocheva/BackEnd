@@ -16,11 +16,6 @@ public class GetUsersUseCaseImpl implements GetUsersUseCase {
 
     @Override
     public GetAllUsersResponse getUsers(final GetAllUsersRequest request) {
-
-        final GetAllUsersResponse response = new GetAllUsersResponse();
-
-        response.setUsers(userRepository.findAll().stream().map(user -> UserConverter.convertToUser(user)).toList());
-
-        return response;
+        return GetAllUsersResponse.builder().users(userRepository.findAll().stream().map(UserConverter::convertToUser).toList()).build();
     }
 }

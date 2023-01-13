@@ -4,6 +4,7 @@ import com.example.individual.business.GetRecentlyPlayedUseCase;
 import com.example.individual.business.converter.PlaylistConverter;
 import com.example.individual.business.converter.RecentlyPlayedConverter;
 import com.example.individual.business.converter.SongConverter;
+import com.example.individual.business.exceptions.InsufficientNumberOfLikedPlaylists;
 import com.example.individual.business.exceptions.UserNotFoundException;
 import com.example.individual.domain.GetRecentlyPlayedRequest;
 import com.example.individual.domain.GetRecentlyPlayedResponse;
@@ -30,9 +31,12 @@ public class GetRecentlyPlayedUseCaseImpl implements GetRecentlyPlayedUseCase {
            if(recentlyPlayed.getPlaylistId() == null){
                return GetRecentlyPlayedResponse.builder().song(SongConverter.convertToSong(songRepository.findBySongId(recentlyPlayed.getSongId()))).build();
            }
-           else {
+           else if(recentlyPlayed.getSongId() != null) {
                return GetRecentlyPlayedResponse.builder().playlist(PlaylistConverter.convertToPlaylist(playlistRepository.
                        findByPlaylistId(recentlyPlayed.getPlaylistId()))).song(SongConverter.convertToSong(songRepository.findBySongId(recentlyPlayed.getSongId()))).build();
+           }
+           else {
+               throw new NullPointerException();
            }
         }
         else {

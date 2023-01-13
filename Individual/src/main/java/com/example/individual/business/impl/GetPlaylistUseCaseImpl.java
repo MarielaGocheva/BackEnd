@@ -16,8 +16,7 @@ public class GetPlaylistUseCaseImpl implements GetPlaylistUseCase {
     @Override
     public Playlist getPlaylist(Long playlistId) {
         if(playlistRepository.existsById(playlistId)){
-            Playlist playlist = PlaylistConverter.convertToPlaylist(playlistRepository.findByPlaylistId(playlistId));
-            return playlist;
+            return PlaylistConverter.convertToPlaylist(playlistRepository.findByPlaylistId(playlistId));
         }
         else {
             throw new PlaylistDoesNotExist();

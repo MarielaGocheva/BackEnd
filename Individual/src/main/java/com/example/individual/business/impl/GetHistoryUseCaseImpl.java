@@ -26,8 +26,8 @@ public class GetHistoryUseCaseImpl implements GetHistoryUseCase {
     private UserRepository userRepository;
     @Override
     public GetHistoryResponse getHistory(GetHistoryRequest request) {
-        if(userRepository.existsById(request.getUserId())){
-            List<RecentlyPlayed> history = recentlyPlayedRepository.findAllByUserIdOrderByIdDesc(request.getUserId()).stream()
+        if(userRepository.existsById(request.getUserId()) && request.getUserId() != null){
+            List<RecentlyPlayed> history = recentlyPlayedRepository.findDistinctByUserIdOrderByIdDesc(request.getUserId()).stream()
                     .map(RecentlyPlayedConverter::convertToRecentlyPlayed).toList();
             List<Song> results = new ArrayList<>();
             for (RecentlyPlayed log : history){

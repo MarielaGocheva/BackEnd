@@ -5,7 +5,7 @@ import com.example.individual.repository.entity.RecentlyPlayedEntity;
 
 public final class RecentlyPlayedConverter {
     private RecentlyPlayedConverter(){
-
+        //Constructor
     }
 
     public static RecentlyPlayed convertToRecentlyPlayed(RecentlyPlayedEntity recentlyPlayed){

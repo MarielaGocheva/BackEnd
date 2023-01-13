@@ -31,8 +31,8 @@ class GetAllPlaylistsUseCaseImplTest {
     void getAllPlaylists(){
         List<Song> songs = new ArrayList<>();
         List<Genre> genres = new ArrayList<>();
-        Playlist summerPlaylist = Playlist.builder().id(2l).title("Summer Playlist").userId(2L).imageUrl("http://img").duration(0.5).songs(songs).genres(genres).build();
-        Playlist gymPlaylist = Playlist.builder().id(3l).title("Gym Playlist").userId(3L).imageUrl("http://img").duration(0.5).songs(songs).genres(genres).build();
+        Playlist summerPlaylist = Playlist.builder().id(2L).title("Summer Playlist").userId(2L).imageUrl("http://img").duration(0.5).songs(songs).genres(genres).build();
+        Playlist gymPlaylist = Playlist.builder().id(3L).title("Gym Playlist").userId(3L).imageUrl("http://img").duration(0.5).songs(songs).genres(genres).build();
         PlaylistEntity summerPlaylistEntity = PlaylistConverter.convertToPlaylistEntity(summerPlaylist);
         PlaylistEntity gymPlaylistEntity = PlaylistConverter.convertToPlaylistEntity(gymPlaylist);
         when(playlistRepositoryMock.findAll()).thenReturn(List.of(summerPlaylistEntity, gymPlaylistEntity));

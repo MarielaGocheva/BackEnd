@@ -11,6 +11,7 @@ import com.example.individual.repository.entity.PlaylistEntity;
 import com.example.individual.repository.entity.PlaylistSongEntity;
 import com.example.individual.repository.entity.SongEntity;
 import lombok.AllArgsConstructor;
+import org.apache.el.stream.Optional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -43,7 +44,7 @@ public class AddSongUseCaseImpl implements AddSongUseCase {
         try {
             SongEntity newSong = SongEntity.builder().songUri(request.getSongUri()).artist(request.getArtist()).imageUrl(request.getImg()).title(request.getTitle()).build();
             songRepository.save(newSong);
-            PlaylistEntity playlist = playlistRepository.findById(request.getPlaylistId()).get();
+            PlaylistEntity playlist = playlistRepository.findById(request.getPlaylistId()).orElseThrow();
             PlaylistSongEntity pl = PlaylistSongEntity.builder().playlist(playlist).song(newSong).build();
             playlistSongRepository.save(pl);
             return newSong;

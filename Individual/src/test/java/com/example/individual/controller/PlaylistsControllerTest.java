@@ -51,6 +51,18 @@ class PlaylistsControllerTest {
     @MockBean
     private GetHistoryUseCase getHistoryUseCase;
     @MockBean
+    private SetPlayedUseCase setPlayedUseCase;
+    @MockBean
+    private GetMostPlayedPlaylistsUseCase getMostPlayedPlaylistsUseCase;
+    @MockBean
+    private LikePlaylistUseCase likePlaylistUseCase;
+    @MockBean
+    private DislikePlaylistUseCase dislikePlaylistUseCase;
+    @MockBean
+    private CheckIfPlaylistIsLikedUseCase checkIfPlaylistIsLikedUseCase;
+    @MockBean
+    private GetRecommendationsUseCase getRecommendationsUseCase;
+    @MockBean
     private AccessTokenDecoder accessTokenDecoder;
 
     @MockBean

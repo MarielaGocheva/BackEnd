@@ -5,7 +5,7 @@ import com.example.individual.repository.entity.GenreEntity;
 
 public final class GenreConverter {
     private GenreConverter() {
-
+        //Constructor
     }
     public static Genre convertToGenre(GenreEntity genre) {
         return Genre.builder()
