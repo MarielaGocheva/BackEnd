@@ -1,10 +1,13 @@
 package com.example.individual.business.impl;
 
 import com.example.individual.business.GetPlaylistSongsUseCase;
-import com.example.individual.domain.*;
+import com.example.individual.business.converter.SongConverter;
+import com.example.individual.business.exceptions.PlaylistDoesNotExist;
+import com.example.individual.domain.GetPlaylistSongsRequest;
+import com.example.individual.domain.GetPlaylistSongsResponse;
+import com.example.individual.domain.Song;
 import com.example.individual.repository.PlaylistRepository;
 import com.example.individual.repository.entity.PlaylistEntity;
-import com.example.individual.repository.entity.SongEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,20 +20,13 @@ public class GetPlaylistSongsUseCaseImpl implements GetPlaylistSongsUseCase {
 
     @Override
     public GetPlaylistSongsResponse getSongs(GetPlaylistSongsRequest request) {
-        List<SongEntity> songs;
-        if (request.getPlaylistId() >= 1) {
-            songs = playlistRepository.getSongs(request.getPlaylistId());
+        List<Song> songs;
+        if (playlistRepository.existsById(request.getPlaylistId())) {
+            PlaylistEntity pl = playlistRepository.findByPlaylistId(request.getPlaylistId());
+            songs = pl.getSongs().stream().map(SongConverter::convertToSong).toList();
         } else {
-            songs = null;
+            throw new PlaylistDoesNotExist();
         }
-
-        final GetPlaylistSongsResponse response = new GetPlaylistSongsResponse();
-        List<Song> plSongs = songs
-                .stream()
-                .map(SongConverter::convert)
-                .toList();
-        response.setSongs(plSongs);
-
-        return response;
+        return GetPlaylistSongsResponse.builder().songs(songs).build();
     }
 }

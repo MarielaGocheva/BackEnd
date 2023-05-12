@@ -15,6 +15,5 @@ public class UpdateUserRequest {
     private String lName;
     private String email;
     private String role;
-    private String salt;
-    private String encryptedPass;
+    private String password;
 }

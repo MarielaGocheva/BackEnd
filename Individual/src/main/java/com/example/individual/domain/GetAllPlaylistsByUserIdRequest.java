@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GetAllPlaylistsByUserIdRequest {
-    private long userId;
+    private Long userId;
 }

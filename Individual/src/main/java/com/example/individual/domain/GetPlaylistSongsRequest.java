@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GetPlaylistSongsRequest {
-    private long playlistId;
+    private Long playlistId;
 }

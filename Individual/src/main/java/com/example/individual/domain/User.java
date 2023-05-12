@@ -1,17 +1,19 @@
 package com.example.individual.domain;
 
-import lombok.*;
+import com.example.individual.domain.enums.Role;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 
-@Data
+
 @Builder
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
 public class User {
     private Long id;
     private String fName;
     private String lName;
     private String email;
-    private String role;
-    private String salt;
-    private String encryptedPass;
+    private Role role;
+    private String password;
 }

@@ -1,26 +1,37 @@
 package com.example.individual.repository.entity;
 
-import lombok.*;
-import org.springframework.context.annotation.Bean;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-//@Table(name = "country")
+@Table(name = "user")
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserEntity {
     @Id
-    //@Generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
 
+    @Column(name = "f_name")
     private String fName;
+
+    @Column(name = "l_name")
     private String lName;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "role")
     private String role;
-    private String salt;
-    private String encryptedPass;
+
+    @Column(name = "password")
+    private String password;
+
 }
