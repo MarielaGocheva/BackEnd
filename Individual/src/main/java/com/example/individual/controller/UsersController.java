@@ -21,6 +21,7 @@ public class UsersController {
     private final GetUserUseCase getUserUseCase;
     private final GetUsersUseCase getUsersUseCase;
     private final GetArtistPageInfoUseCase getArtistPageInfoUseCase;
+    private final GetClientLibraryUseCase getClientLibraryUseCase;
 
     @GetMapping("{id}")
     public ResponseEntity<GetUserResponse> getUser(@PathVariable (value="id") Long id) {
@@ -59,5 +60,12 @@ public class UsersController {
         GetArtistPageInfoRequest request = GetArtistPageInfoRequest.builder().id(id).build();
         GetArtistPageInfoResponse response = getArtistPageInfoUseCase.findArtist(request);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/library/{userId}")
+    public ResponseEntity<GetClientLibraryResponse> getLibrary(@PathVariable (value = "userId") Long id){
+        GetClientLibraryRequest request = GetClientLibraryRequest.builder().userId(id).build();
+        GetClientLibraryResponse response = getClientLibraryUseCase.getLibrary(request);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

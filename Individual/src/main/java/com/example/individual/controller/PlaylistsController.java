@@ -2,6 +2,7 @@ package com.example.individual.controller;
 
 import com.example.individual.business.*;
 import com.example.individual.business.exceptions.InsufficientNumberOfLikedPlaylists;
+import com.example.individual.configuration.security.isAuthenticated.IsAuthenticated;
 import com.example.individual.domain.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

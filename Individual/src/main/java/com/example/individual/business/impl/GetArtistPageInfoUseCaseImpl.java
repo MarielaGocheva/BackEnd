@@ -25,7 +25,7 @@ public class GetArtistPageInfoUseCaseImpl implements GetArtistPageInfoUseCase {
         if(request.getId() != null){
             User user = UserConverter.convertToUser(userRepository.findUserById(request.getId()));
             String img = "shorturl.at/cmAPV";
-            List<Playlist> playlists = playlistRepository.findAllByUserId(request.getId()).stream().map(playlistEntity -> PlaylistConverter.convertToPlaylist(playlistEntity)).toList();
+            List<Playlist> playlists = playlistRepository.findAllByUserId(request.getId()).stream().map(PlaylistConverter::convertToPlaylist).toList();
             return GetArtistPageInfoResponse.builder().fName(user.getFName()).lName(user.getLName()).img(img).playlists(playlists).build();
         }
         else {
